@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/calendar/v3.dart';
 import 'package:http/http.dart';
 import 'package:http/io_client.dart';
 
-Future<UserCredential?> onEventButton(GoogleSignIn googleSignIn, int type) async {
+Future<List<Widget>?> onEventButton(GoogleSignIn googleSignIn, int type) async {
   try {
     GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
     print('---------- サインイン>');
@@ -39,9 +40,13 @@ Future<UserCredential?> onEventButton(GoogleSignIn googleSignIn, int type) async
     event.end = end;
 
     final events = await calendar.events.list(calendarId);
-
+    print(events.items![4].summary);
+    print("取得中です");
+    List<Widget> tasks = [];
     events.items!.forEach((element) {
-      print(element.summary);
+      if (element.summary != null) {
+        tasks.add(Text(element.summary!));
+      }
     });
 
     String id = events.items![0].id!;
@@ -53,8 +58,8 @@ Future<UserCredential?> onEventButton(GoogleSignIn googleSignIn, int type) async
         print("イベントの追加失敗");
       }
     });
-
     print(book);
+    return tasks;
   } catch (e) {
     print('エラー $e');
   }

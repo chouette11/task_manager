@@ -1,14 +1,40 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:task_manager/calendar.dart';
+import 'package:task_manager/firestore.dart';
 import 'package:task_manager/google_signin_method.dart';
+
+final taskProvider = FutureProvider((ref) async {
+  final googleUser = GoogleSignIn(scopes: [
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+    'https://www.googleapis.com/auth/calendar',
+  ]);
+
+  final tasks = await onEventButton(googleUser, 0);
+  return tasks;
+});
+
+final tasksProvider = FutureProvider((ref) async {
+  final googleUser = GoogleSignIn(scopes: [
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+    'https://www.googleapis.com/auth/calendar',
+  ]);
+
+  final tasks = await onEventButton(googleUser, 0);
+  return tasks;
+});
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(
+    ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -33,56 +59,70 @@ class TestPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Firebase.initializeApp();
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ButtonTheme(
-              minWidth: 350.0,
-              // height: 100.0,
-              child: RaisedButton(
-                child: Text('Google認証',
-                  style: TextStyle(fontWeight: FontWeight.bold),),
-                textColor: Colors.white,
-                color: Colors.grey,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                onPressed: () {
-                  GoogleSignInMethod().googleSignIn();
-                },
+      appBar: AppBar(title: Text("タスク一覧")),
+      body: Column(
+        children: [
+          Container(
+            height: 400,
+              child: TaskView()),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              RaisedButton(
+                child: Text('Google認証'),
+                onPressed: () => GoogleSignInMethod().googleSignIn(),
               ),
-            ),
-            ButtonTheme(
-              minWidth: 350.0,
-              // height: 100.0,
-              child: RaisedButton(
-                child: Text('Google認証ログアウト',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                textColor: Colors.white,
-                color: Colors.grey,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
+              RaisedButton(
+                child: Text('Google認証ログアウト'),
                 onPressed: () {
                   FirebaseAuth.instance.signOut();
                   print('サインアウトしました。');
                 },
               ),
-            ),
-            Text('別のGoogleアカウントでログインしたい場合、一回ログアウトする必要がある。'),
-            ElevatedButton(
-                onPressed: () async { await onEventButton(googleUser, 0);},
-                child: Text("calendar")),
-          ],
-        ),
+              Text('別のGoogleアカウントでログインしたい場合、一回ログアウトする必要がある。'),
+              ElevatedButton(
+                  onPressed: () async { await onEventButton(googleUser, 0); await editDiary(googleUser);},
+                  child: Text("calendar")),
+            ],
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           print(GoogleSignInMethod().currentUser!.displayName);
         },
       ),
+    );
+  }
+}
+
+class TaskView extends ConsumerStatefulWidget {
+  TaskView({Key? key}) : super(key: key);
+
+  @override
+  TaskViewState createState() => TaskViewState();
+}
+
+class TaskViewState extends ConsumerState<TaskView> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ref.read(tasksProvider);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final tasks = ref.watch(tasksProvider);
+    return Container(
+      child: tasks.when(
+          data: (list) => list!.isNotEmpty
+          ? ListView(
+            children: list,
+          )
+          : const Text('List is empty'),
+          error: (error, _) => Text(error.toString()),
+          loading: () => const CircularProgressIndicator())
     );
   }
 }

@@ -4,21 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:task_manager/calendar.dart';
-import 'package:task_manager/firestore.dart';
 import 'package:task_manager/google_signin_method.dart';
 
 final taskProvider = FutureProvider((ref) async {
-  final googleUser = GoogleSignIn(scopes: [
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-    'https://www.googleapis.com/auth/calendar',
-  ]);
-
-  final tasks = await onEventButton(googleUser, 0);
-  return tasks;
-});
-
-final tasksProvider = FutureProvider((ref) async {
   final googleUser = GoogleSignIn(scopes: [
     'email',
     'https://www.googleapis.com/auth/contacts.readonly',
@@ -81,7 +69,7 @@ class TestPage extends StatelessWidget {
               ),
               Text('別のGoogleアカウントでログインしたい場合、一回ログアウトする必要がある。'),
               ElevatedButton(
-                  onPressed: () async { await onEventButton(googleUser, 0); await editDiary(googleUser);},
+                  onPressed: () async { await onEventButton(googleUser, 0);},
                   child: Text("calendar")),
             ],
           ),
@@ -108,12 +96,12 @@ class TaskViewState extends ConsumerState<TaskView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    ref.read(tasksProvider);
+    ref.read(taskProvider);
   }
 
   @override
   Widget build(BuildContext context) {
-    final tasks = ref.watch(tasksProvider);
+    final tasks = ref.watch(taskProvider);
     return Container(
       child: tasks.when(
           data: (list) => list!.isNotEmpty

@@ -1,16 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:task_manager/task.dart';
 
-Future editDiary(GoogleSignIn googleSignIn) async {
+Future setTasks(List<Map<String, dynamic>> tasks) async {
   try {
     var now = DateTime.now();
     CollectionReference diaries = FirebaseFirestore.instance.collection('tasks');
     return diaries
         .doc("フクダ")
-        .set(<String, List<String?>>{
-      'diaryData': tasks,
+        .set(<String, dynamic>{
+      'tasks': tasks,
+      'pastTime': now,
     },
-      SetOptions(merge: true),
+      SetOptions(merge: false),
     );
   } catch (e) {
     print(e);

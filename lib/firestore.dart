@@ -1,33 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:googleapis/calendar/v3.dart';
-import 'package:task_manager/calendar.dart';
+import 'package:task_manager/task.dart';
 
 Future editDiary(GoogleSignIn googleSignIn) async {
   try {
-    GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
-    print('---------- サインイン>');
-    print(googleSignInAccount.toString());
-
-    // リクエストから、認証情報を取得
-    var client = GoogleHttpClient(await googleSignInAccount!.authHeaders);
-    var calendar = CalendarApi(client);
-
-    String calendarId = "primary";
-
-    final events = await calendar.events.list(calendarId);
-    print(events.items![4].summary);
-    print("取得中です");
-    List<String?> tasks = [];
-    events.items!.forEach((element) {
-      if (element.summary != null) {
-        tasks.add(element.summary);
-      }
-    });
-
+    var now = DateTime.now();
     CollectionReference diaries = FirebaseFirestore.instance.collection('tasks');
     return diaries
         .doc("フクダ")
@@ -39,4 +15,28 @@ Future editDiary(GoogleSignIn googleSignIn) async {
   } catch (e) {
     print(e);
   }
+}
+
+// Future getDiary() async {
+//   try {
+//     final doc = await Collection.diaries.doc(user.uid).get();
+//     diary = Diary(doc);
+//     notifyListeners();
+//   } catch (e) {
+//     print(e);
+//   }
+// }
+
+Future<Task?> getTaskFromFirestore(String uid) async {
+  try {
+    final doc = await FirebaseFirestore.instance.collection('tasks').doc('フクダ').get();
+    return Task(doc);
+  } catch (e) {
+    print(e);
+    return null;
+  }
+}
+
+Future getTasks() async {
+
 }

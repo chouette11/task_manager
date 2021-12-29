@@ -83,34 +83,3 @@ class TestPage extends StatelessWidget {
     );
   }
 }
-
-class TaskView extends ConsumerStatefulWidget {
-  TaskView({Key? key}) : super(key: key);
-
-  @override
-  TaskViewState createState() => TaskViewState();
-}
-
-class TaskViewState extends ConsumerState<TaskView> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    ref.read(taskProvider);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final tasks = ref.watch(taskProvider);
-    return Container(
-      child: tasks.when(
-          data: (list) => list!.isNotEmpty
-          ? ListView(
-            children: list,
-          )
-          : const Text('List is empty'),
-          error: (error, _) => Text(error.toString()),
-          loading: () => const CircularProgressIndicator())
-    );
-  }
-}

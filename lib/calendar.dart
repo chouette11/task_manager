@@ -5,6 +5,7 @@ import 'package:http/http.dart';
 import 'package:http/io_client.dart';
 import 'package:task_manager/firestore.dart';
 import 'package:task_manager/task.dart';
+import 'package:task_manager/task_card.dart';
 
 Future<List<Widget>?> onEventButton(GoogleSignIn googleSignIn, int type) async {
   try {
@@ -18,17 +19,20 @@ Future<List<Widget>?> onEventButton(GoogleSignIn googleSignIn, int type) async {
 
     String calendarId = "primary";
 
-    final events = await calendar.events.list(calendarId);
-    Task? task = await getTaskFromFirestore('フクダ');
+    final events = await calendar.events.list(calendarId); // googleカレンダーから取得
+    Task? task = await getTaskFromFirestore('フクダ'); // Firestoreから取得
 
-    List<Map<String, dynamic>> tasksData = task!.tasks;
+    int id = task!.taskData.length;
+    List<Map<String, dynamic>> tasksData = task.taskData;
     events.items!.forEach((element) {
       if (element.created!.isAfter(task.pastTime)) {
-        if (element.summary != null) {
-          tasksData.add(<String, dynamic>{
+        if (element.summary != null) { // 以前にFirestoreが読み込まれた時間とイベントが作成された時間を比較して追加
+          tasksData.add(<String, dynamic> {
+            'id': id,
             'task': element.summary!,
-            'isFinish': false,
+            'limit' : element.end!.dateTime,
           });
+          id++;
         }
       }
     });
@@ -38,7 +42,7 @@ Future<List<Widget>?> onEventButton(GoogleSignIn googleSignIn, int type) async {
     tasksData.forEach((element) {
       print(element);
       if (element['isFinish'] == false) {
-        tasks.add(Text(element['task']));
+        tasks.add(TaskCard(taskData: element));
       }
     });
     return tasks;

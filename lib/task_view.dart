@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/main.dart';
-import 'package:task_manager/task_row.dart';
+import 'package:task_manager/task_card.dart';
 
 class TaskView extends ConsumerStatefulWidget {
   TaskView({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class TaskViewState extends ConsumerState<TaskView> {
               int num = 0;
               items.taskData.forEach((element) {
                 print(element);
-                tasks.add(TaskCard(taskData: element, num: num));
+                tasks.add(TaskCard(taskData: element));
                 num++;
               });
               return ListView(

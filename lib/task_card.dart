@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/firestore.dart';
 
 class TaskCard extends StatelessWidget {
-  const TaskCard({Key? key, required this.taskData, required this.num}) : super(key: key);
+  const TaskCard({Key? key, required this.taskData}) : super(key: key);
   final Map<String, dynamic> taskData;
-  final int num;
 
   @override
   Widget build(BuildContext context) {

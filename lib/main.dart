@@ -16,22 +16,10 @@ final itemsStreamProvider = StreamProvider<Task>((ref) {
   print(collection.snapshots().first);
   print(collection.doc('フクダ'));
   // データ（Map型）を取得
-  final data = collection.doc('フクダ').get();
 
-  final stream = collection.doc('フクダ').snapshots().map((event) => Task(event));
+  final stream = collection.doc('フクダ').snapshots();
 
-  return stream;
-});
-
-final taskProvider = FutureProvider((ref) async {
-  final googleUser = GoogleSignIn(scopes: [
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-    'https://www.googleapis.com/auth/calendar',
-  ]);
-
-  final tasks = await onEventButton(googleUser, 0);
-  return tasks;
+  return stream.map((event) => Task(event));
 });
 
 void main() async{

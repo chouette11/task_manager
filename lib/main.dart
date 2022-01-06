@@ -34,7 +34,10 @@ class MyApp extends StatelessWidget {
     Firebase.initializeApp();
     return MaterialApp(
       debugShowCheckedModeBanner: true,  // <- Debug の 表示を OFF
-      home: TestPage(),
+      home: Scaffold(
+        appBar: AppBar(title: Text("タスク一覧")),
+        body: TodayTask(),
+      ),
     );
   }
 }
@@ -49,40 +52,32 @@ class TestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Firebase.initializeApp();
-    return Scaffold(
-      appBar: AppBar(title: Text("タスク一覧")),
-      body: Column(
-        children: [
-          Container(
-              height: 400,
-              child: TaskView()),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              RaisedButton(
-                child: Text('Google認証'),
-                onPressed: () => GoogleSignInMethod().googleSignIn(),
-              ),
-              RaisedButton(
-                child: Text('Google認証ログアウト'),
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                  print('サインアウトしました。');
-                },
-              ),
-              Text('別のGoogleアカウントでログインしたい場合、一回ログアウトする必要がある。'),
-              ElevatedButton(
-                  onPressed: () async { setDebug(googleUser);},
-                  child: Text("calendar")),
-            ],
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          print(GoogleSignInMethod().currentUser!.displayName);
-        },
-      ),
+    return Column(
+      children: [
+        Container(
+            height: 400,
+            child: TaskView()),
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            RaisedButton(
+              child: Text('Google認証'),
+              onPressed: () => GoogleSignInMethod().googleSignIn(),
+            ),
+            RaisedButton(
+              child: Text('Google認証ログアウト'),
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+                print('サインアウトしました。');
+              },
+            ),
+            Text('別のGoogleアカウントでログインしたい場合、一回ログアウトする必要がある。'),
+            ElevatedButton(
+                onPressed: () async { setDebug(googleUser);},
+                child: Text("calendar")),
+          ],
+        ),
+      ],
     );
   }
 }

@@ -21,11 +21,9 @@ class TaskViewState extends ConsumerState<TaskView> {
             data: (items) {
               print(items);
               List<Widget> tasks = [];
-              int num = 0;
               items.taskData.forEach((element) {
                 print(element);
                 tasks.add(TaskCard(taskData: element));
-                num++;
               });
               return ListView(
                 children: tasks.reversed.toList(),

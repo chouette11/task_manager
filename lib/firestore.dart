@@ -18,15 +18,64 @@ Future setTasks(List<Map<String, dynamic>> tasks) async {
   }
 }
 
-// Future getDiary() async {
-//   try {
-//     final doc = await Collection.diaries.doc(user.uid).get();
-//     diary = Diary(doc);
-//     notifyListeners();
-//   } catch (e) {
-//     print(e);
-//   }
-// }
+Future onCheck(int id, DateTime limit, String task) async {
+  try {
+    CollectionReference tasks = FirebaseFirestore.instance.collection('tasks');
+    tasks.doc('フクダ').update({
+        'taskData': FieldValue.arrayRemove([{
+          'id': id,
+          'limit': limit,
+          'task': task,
+        }])
+      });
+    tasks.doc('フクダ').update({
+      'doneTaskData': FieldValue.arrayUnion([{
+        'id': id,
+        'limit': limit,
+        'task': task,
+      }])
+    });
+  } catch(e) {
+
+  }
+}
+
+Future<void> setDebug(GoogleSignIn googleSignIn) async {
+  try {
+    GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+    print('---------- サインイン>');
+    print(googleSignInAccount.toString());
+
+    // リクエストから、認証情報を取得
+    var client = GoogleHttpClient(await googleSignInAccount!.authHeaders);
+    var calendar = CalendarApi(client);
+
+    String calendarId = "primary";
+    print("aa");
+
+    final events = await calendar.events.list(calendarId);
+    print("aa");
+
+    int id = 0;
+    List<Map<String, dynamic>> tasksData = [];
+    print("aa");
+    events.items!.forEach((element) {
+      // if (element.created!.isAfter(task.pastTime)) {
+      if (element.summary != null) {
+        tasksData.add(<String, dynamic>{
+          'id': id,
+          'task': element.summary!,
+          'limit': element.end!.dateTime,
+        });
+        id++;
+      }
+      // }
+    });
+    setTasks(tasksData);
+  } catch(e) {
+    print(e);
+  }
+}
 
 Future<Task?> getTaskFromFirestore(String uid) async {
   try {
@@ -36,8 +85,4 @@ Future<Task?> getTaskFromFirestore(String uid) async {
     print(e);
     return null;
   }
-}
-
-Future getTasks() async {
-
 }

@@ -3,11 +3,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/calendar/v3.dart';
 import 'package:http/http.dart';
 import 'package:http/io_client.dart';
-import 'package:task_manager/firestore.dart';
-import 'package:task_manager/task.dart';
-import 'package:task_manager/task_card.dart';
+import 'package:task_manager/components/firestore.dart';
+import 'package:task_manager/types/task.dart';
+import 'package:task_manager/pages/task_view/task_card.dart';
 
-Future<List<Widget>?> onEventButton(GoogleSignIn googleSignIn, int type) async {
+Future<List<Widget>?> setCalendar(GoogleSignIn googleSignIn, int type) async {
   try {
     GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
     print('---------- サインイン>');
@@ -39,12 +39,6 @@ Future<List<Widget>?> onEventButton(GoogleSignIn googleSignIn, int type) async {
     setTasks(tasksData);
 
     List<Widget> tasks = [];
-    tasksData.forEach((element) {
-      print(element);
-      if (element['isFinish'] == false) {
-        tasks.add(TaskCard(taskData: element));
-      }
-    });
     return tasks;
   } catch (e) {
     print('エラー $e');

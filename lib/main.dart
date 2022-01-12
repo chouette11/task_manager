@@ -1,14 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:task_manager/calendar.dart';
-import 'package:task_manager/firestore.dart';
-import 'package:task_manager/google_signin_method.dart';
-import 'package:task_manager/task.dart';
-import 'package:task_manager/task_view.dart';
+import 'package:task_manager/types/task.dart';
 
 final itemsStreamProvider = StreamProvider<Task>((ref) {
   // users/{user.uid} ドキュメントのSnapshotを取得
@@ -38,46 +32,6 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(title: Text("タスク一覧")),
         body: TodayTask(),
       ),
-    );
-  }
-}
-
-class TestPage extends StatelessWidget {
-  final googleUser = GoogleSignIn(scopes: [
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-    'https://www.googleapis.com/auth/calendar',
-  ]);
-
-  @override
-  Widget build(BuildContext context) {
-    Firebase.initializeApp();
-    return Column(
-      children: [
-        Container(
-            height: 400,
-            child: TaskView()),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            RaisedButton(
-              child: Text('Google認証'),
-              onPressed: () => GoogleSignInMethod().googleSignIn(),
-            ),
-            RaisedButton(
-              child: Text('Google認証ログアウト'),
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-                print('サインアウトしました。');
-              },
-            ),
-            Text('別のGoogleアカウントでログインしたい場合、一回ログアウトする必要がある。'),
-            ElevatedButton(
-                onPressed: () async { setDebug(googleUser);},
-                child: Text("calendar")),
-          ],
-        ),
-      ],
     );
   }
 }

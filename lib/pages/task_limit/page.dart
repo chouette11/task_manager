@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/main.dart';
-import 'package:task_manager/task_card.dart';
+import 'package:task_manager/pages/task_limit/now_task_card.dart';
 
 class TaskPage extends StatefulWidget {
   const TaskPage({Key? key}) : super(key: key);
@@ -94,7 +94,7 @@ class OneDayTaskState extends ConsumerState<TodayTask> {
                   return Text("ありません");
                 }
                 int random = Random().nextInt(todayTasks.length);
-                return NowTask(taskData: todayTasks[random]);
+                return NowTaskCard(taskData: todayTasks[random]);
               },
               error: (error, _) => Text(error.toString()),
               loading: () => const CircularProgressIndicator(),

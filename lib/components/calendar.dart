@@ -1,13 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/calendar/v3.dart';
 import 'package:http/http.dart';
 import 'package:http/io_client.dart';
 import 'package:task_manager/components/firestore.dart';
 import 'package:task_manager/types/task.dart';
-import 'package:task_manager/pages/task_view/task_card.dart';
 
-Future<List<Widget>?> setCalendar(GoogleSignIn googleSignIn, int type) async {
+Future<void> setCalendar(GoogleSignIn googleSignIn, int type) async {
   try {
     GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
     print('---------- サインイン>');
@@ -37,9 +35,6 @@ Future<List<Widget>?> setCalendar(GoogleSignIn googleSignIn, int type) async {
       }
     });
     setTasks(tasksData);
-
-    List<Widget> tasks = [];
-    return tasks;
   } catch (e) {
     print('エラー $e');
   }

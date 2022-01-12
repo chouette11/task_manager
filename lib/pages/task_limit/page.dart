@@ -5,56 +5,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/main.dart';
 import 'package:task_manager/pages/task_limit/now_task_card.dart';
 
-class TaskPage extends StatefulWidget {
-  const TaskPage({Key? key}) : super(key: key);
-
-  @override
-  _TaskPageState createState() => _TaskPageState();
-}
-
-class _TaskPageState extends State<TaskPage> {
-  int pageIndex = 1;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TodayTask(pageIndex + 1),
-        BottomNavigationBar(
-          onTap: (index) {
-            pageIndex = index;
-            setState(() {
-
-            });
-          },
-          currentIndex: pageIndex,
-          items: [
-            BottomNavigationBarItem(
-              label: "1",
-                icon: Icon(Icons.ac_unit),),
-            BottomNavigationBarItem(
-              label: "2",
-                icon: Icon(Icons.ac_unit),),
-            BottomNavigationBarItem(
-              label: "3",
-                icon: Icon(Icons.ac_unit)),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
-
-class TodayTask extends ConsumerStatefulWidget {
-  const TodayTask(this.index, {Key? key}) : super(key: key);
+class TaskLimitPage extends ConsumerStatefulWidget {
+  const TaskLimitPage(this.index, {Key? key}) : super(key: key);
   final int index;
 
   @override
   OneDayTaskState createState() => OneDayTaskState();
 }
 
-class OneDayTaskState extends ConsumerState<TodayTask> {
+class OneDayTaskState extends ConsumerState<TaskLimitPage> {
   @override
   Widget build(BuildContext context) {
     final tasks = ref.watch(itemsStreamProvider);

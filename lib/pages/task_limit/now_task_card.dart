@@ -30,7 +30,11 @@ class NowTaskCard extends StatelessWidget {
                 GestureDetector(
                   onTap: () => onCheck(taskData['id'], taskData['limit'], taskData['task']),
                   child: Icon(Icons.check_circle_outline),
-                )
+                ),
+                GestureDetector(
+                  onTap: () => onAdd(taskData['id'], taskData['limit'], taskData['task']),
+                  child: Icon(Icons.add),
+                ),
               ],
             ),
             Row(

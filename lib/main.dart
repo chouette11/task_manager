@@ -1,12 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:task_manager/components/calendar.dart';
 import 'package:task_manager/pages/home/page.dart';
 import 'package:task_manager/types/task.dart';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'components/google_signin_method.dart';
 
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -15,7 +18,12 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 final itemsStreamProvider = StreamProvider<Task>((ref) {
-  // users/{user.uid} ドキュメントのSnapshotを取得
+  final googleUser = GoogleSignIn(scopes: [
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+    'https://www.googleapis.com/auth/calendar',
+  ]);
+  // setCalendar(googleUser);
   final collection = FirebaseFirestore.instance.collection('tasks');
   final stream = collection.doc('フクダ').snapshots();
 
@@ -82,6 +90,9 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         appBar: AppBar(title: Text("タスク一覧")),
         body: HomePage(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {FirebaseAuth.instance.signOut(); GoogleSignInMethod().googleSignIn();},
+        ),
       ),
     );
   }

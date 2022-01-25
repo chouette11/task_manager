@@ -5,7 +5,7 @@ import 'package:http/io_client.dart';
 import 'package:task_manager/components/firestore.dart';
 import 'package:task_manager/types/task.dart';
 
-Future<void> setCalendar(GoogleSignIn googleSignIn, int type) async {
+Future<void> setCalendar(GoogleSignIn googleSignIn) async {
   try {
     GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
     print('---------- サインイン>');
@@ -16,23 +16,36 @@ Future<void> setCalendar(GoogleSignIn googleSignIn, int type) async {
     var calendar = CalendarApi(client);
 
     String calendarId = "primary";
+    var now = DateTime.now();
+    var a = DateTime(2022, 1, 25, 12, 12);
 
-    final events = await calendar.events.list(calendarId); // googleカレンダーから取得
+    final events = await calendar.events.list(calendarId, singleEvents: true, timeMax: a); // googleカレンダーから取得
     Task? task = await getTaskFromFirestore('フクダ'); // Firestoreから取得
 
-    int id = task!.taskData.length;
-    List<Map<String, dynamic>> tasksData = task.taskData;
+    int id = 0;
+    List<Map<String, dynamic>> tasksData = task!.taskData;
     events.items!.forEach((element) {
-      if (element.created!.isAfter(task.pastTime)) {
+      print(element.end!.toJson());
+      // if (element.created!.isAfter(task.pastTime)) {
         if (element.summary != null) { // 以前にFirestoreが読み込まれた時間とイベントが作成された時間を比較して追加
-          tasksData.add(<String, dynamic> {
-            'id': id,
-            'task': element.summary!,
-            'limit' : element.end!.dateTime,
-          });
+          if (element.end!.date != null) {
+            DateTime? date = element.end!.date;
+            date!.add(Duration(days: -1));
+            tasksData.add(<String, dynamic>{
+              'id': id,
+              'task': element.summary! + " " + date.month.toString() + "月" + date.day.toString() + "日",
+              'limit': date,
+            });
+          } else {
+            tasksData.add(<String, dynamic>{
+              'id': id,
+              'task': element.summary!,
+              'limit': element.end!.dateTime,
+            });
+          }
           id++;
         }
-      }
+      // }
     });
     setTasks(tasksData);
   } catch (e) {

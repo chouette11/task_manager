@@ -31,20 +31,22 @@ class _HomePageState extends State<HomePage> {
             pageIndex = index;
             setState(() {});
           },
+          fixedColor: Colors.orange,
           currentIndex: pageIndex,
           items: [
             BottomNavigationBarItem(
               label: "1",
-              icon: Icon(Icons.ac_unit),),
+              icon: Icon(Icons.ac_unit, color: Colors.orange,),
+            ),
             BottomNavigationBarItem(
               label: "2",
-              icon: Icon(Icons.ac_unit),),
+              icon: Icon(Icons.ac_unit, color: Colors.orange,)),
             BottomNavigationBarItem(
                 label: "3",
-                icon: Icon(Icons.ac_unit)),
+                icon: Icon(Icons.ac_unit, color: Colors.orange,)),
             BottomNavigationBarItem(
                 label: "一覧",
-                icon: Icon(Icons.ac_unit)),
+                icon: Icon(Icons.ac_unit, color: Colors.orange,)),
           ],
         ),
       ],

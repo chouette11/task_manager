@@ -5,6 +5,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/pages/home/page.dart';
 import 'package:task_manager/types/task.dart';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print("バックグラウンドでメッセージを受け取りました");
+}
+
 final itemsStreamProvider = StreamProvider<Task>((ref) {
   // users/{user.uid} ドキュメントのSnapshotを取得
   final collection = FirebaseFirestore.instance.collection('tasks');

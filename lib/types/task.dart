@@ -13,8 +13,10 @@ class Task {
       'limit' : item['limit'].toDate() as DateTime,
     }).toList();
     pastTime = data['pastTime'].toDate();
+    noLimit = data['noLimit'] as bool;
   }
   var taskId;
   var taskData;
   var pastTime;
+  var noLimit;
 }

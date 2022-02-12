@@ -4,13 +4,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:task_manager/components/appbar.dart';
-import 'package:task_manager/components/calendar.dart';
-import 'package:task_manager/pages/home/page.dart';
 import 'package:task_manager/types/task.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'components/google_signin_method.dart';
+import 'package:task_manager/ui/components/appbar.dart';
+import 'package:task_manager/ui/home/page.dart';
 
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {

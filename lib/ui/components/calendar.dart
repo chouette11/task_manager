@@ -2,8 +2,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/calendar/v3.dart';
 import 'package:http/http.dart';
 import 'package:http/io_client.dart';
-import 'package:task_manager/components/firestore.dart';
+
 import 'package:task_manager/types/task.dart';
+import 'package:task_manager/ui/components/firestore.dart';
 
 Future<void> setCalendar(GoogleSignIn googleSignIn) async {
   try {

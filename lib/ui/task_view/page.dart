@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/main.dart';
-import 'package:task_manager/pages/task_view/task_card.dart';
+import 'package:task_manager/ui/task_view/task_card.dart';
 
 class TaskView extends ConsumerStatefulWidget {
   TaskView({Key? key}) : super(key: key);

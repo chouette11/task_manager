@@ -3,7 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/main.dart';
-import 'package:task_manager/pages/task_limit/now_task_card.dart';
+
+import 'now_task_card.dart';
 
 class TaskLimitPage extends ConsumerStatefulWidget {
   const TaskLimitPage(this.index, {Key? key}) : super(key: key);

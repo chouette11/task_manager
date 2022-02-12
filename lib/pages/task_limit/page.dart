@@ -17,6 +17,7 @@ class OneDayTaskState extends ConsumerState<TaskLimitPage> {
   @override
   Widget build(BuildContext context) {
     final tasks = ref.watch(itemsStreamProvider);
+    final check = ref.watch(checkStateProvider.notifier);
     var now = DateTime.now();
 
     return Container(
@@ -47,8 +48,11 @@ class OneDayTaskState extends ConsumerState<TaskLimitPage> {
                   print(days);
                   if (days >= 0 && days < widget.index && hours >= 0 && minutes >= 0) {
                     todayTasks.add(element);
+                  } else if (element['noLimit'] == true && check.state == true) {
+                    todayTasks.add(element);
                   }
                 });
+
                 if (todayTasks.length == 0) {
                   return Text("ありません");
                 }

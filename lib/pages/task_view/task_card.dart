@@ -28,7 +28,7 @@ class TaskCard extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => onCheck(taskData['id'], taskData['limit'], taskData['task']),
+                  onTap: () => onCheck(taskData['id'], taskData['limit'], taskData['noLimit'], taskData['task']),
                   child: Icon(Icons.check_circle_outline),
                 )
               ],

@@ -7,12 +7,15 @@ class NowTaskCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var now = DateTime.now();
-    Duration diff = taskData['limit'].difference(now);
-    int days = diff.inDays;
-    int hours = diff.inHours - (days * 24);
-    int minutes = diff.inMinutes - (days * 24 * 60) - (hours * 60);
-    String limit = "${days.toString()}日${hours.toString()}時間${minutes.toString()}分";
+    String limit = "";
+    if (taskData['noLimit'] == false) {
+      var now = DateTime.now();
+      Duration diff = taskData['limit'].difference(now);
+      int days = diff.inDays;
+      int hours = diff.inHours - (days * 24);
+      int minutes = diff.inMinutes - (days * 24 * 60) - (hours * 60);
+      limit = "${days.toString()}日${hours.toString()}時間${minutes.toString()}分";
+    }
     return Container(
       child: Padding(
         padding: const EdgeInsets.only(top: 4, bottom: 4, left: 8, right: 8),
@@ -28,7 +31,7 @@ class NowTaskCard extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => onCheck(taskData['id'], taskData['limit'], taskData['task']),
+                  onTap: () => onCheck(taskData['id'], taskData['limit'], taskData['noLimit'], taskData['task']),
                   child: Icon(Icons.check_circle_outline),
                 ),
                 GestureDetector(

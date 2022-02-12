@@ -11,12 +11,11 @@ class Task {
       'id': item['id'] as int,
       'task': item['task'] as String,
       'limit' : item['limit'].toDate() as DateTime,
+      'noLimit': item['noLimit'] as bool,
     }).toList();
     pastTime = data['pastTime'].toDate();
-    noLimit = data['noLimit'] as bool;
   }
   var taskId;
   var taskData;
   var pastTime;
-  var noLimit;
 }

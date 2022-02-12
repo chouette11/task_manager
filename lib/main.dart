@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:task_manager/components/appbar.dart';
 import 'package:task_manager/components/calendar.dart';
 import 'package:task_manager/pages/home/page.dart';
 import 'package:task_manager/types/task.dart';
@@ -30,6 +31,8 @@ final itemsStreamProvider = StreamProvider<Task>((ref) {
   return stream.map((event) => Task(event));
 });
 
+final checkStateProvider = StateProvider((ref) => false);
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -53,12 +56,16 @@ class _MyAppState extends State<MyApp> {
   );
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
-
   @override
   void initState() {
     super.initState();
 
     _firebaseMessaging.getToken().then((String? token) {
+      CollectionReference users = FirebaseFirestore.instance.collection('users');
+      users.doc('フクダ').set({
+        'name': "ふくだ",
+        'token': token,
+      });
       print("$token");
     });
 
@@ -88,11 +95,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: true,  // <- Debug の 表示を OFF
       home: Scaffold(
-        appBar: AppBar(title: Text("タスク一覧")),
+        appBar: CustomAppbar(title: "タスク一覧(通知)"),
         body: HomePage(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {FirebaseAuth.instance.signOut(); GoogleSignInMethod().googleSignIn();},
-        ),
       ),
     );
   }

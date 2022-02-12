@@ -17,13 +17,14 @@ Future setTasks(List<Map<String, dynamic>> taskData) async {
   }
 }
 
-Future onCheck(int id, DateTime limit, String task) async {
+Future onCheck(int id, DateTime limit, bool noLimit, String task) async {
   try {
     CollectionReference tasks = FirebaseFirestore.instance.collection('tasks');
     tasks.doc('フクダ').update({
         'taskData': FieldValue.arrayRemove([{
           'id': id,
           'limit': limit,
+          'noLimit': noLimit,
           'task': task,
         }])
       });

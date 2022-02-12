@@ -39,6 +39,8 @@ dependencies:
   firebase_storage: ^10.2.4
   firebase_messaging: ^11.2.5
   flutter_local_notifications: ^9.2.0
+  freezed: ^1.1.1
+  freezed_annotation: ^1.1.0
 
 dev_dependencies:
   flutter_test:

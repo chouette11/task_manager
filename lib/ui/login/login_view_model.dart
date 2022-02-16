@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/data/repository/auth/auth_repository.impl.dart';
 import 'package:task_manager/data/repository/firestore/firestore_repository.impl.dart';
-import 'package:task_manager/ui/hook/user_router.dart';
 import 'package:task_manager/ui/login/login_state.dart';
 import 'package:task_manager/ui/route/app_route.gr.dart';
 

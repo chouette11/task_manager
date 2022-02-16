@@ -8,7 +8,8 @@ import 'package:task_manager/types/task.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:task_manager/ui/components/appbar.dart';
-import 'package:task_manager/ui/home/page.dart';
+import 'package:task_manager/ui/login/login_page.dart';
+import 'package:task_manager/ui/top/top_page.dart';
 
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -94,7 +95,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: true,  // <- Debug の 表示を OFF
       home: Scaffold(
         appBar: CustomAppbar(title: "タスク一覧(通知)"),
-        body: HomePage(),
+        body: LoginPage(),
       ),
     );
   }

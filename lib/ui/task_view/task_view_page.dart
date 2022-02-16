@@ -15,14 +15,13 @@ class TaskViewState extends ConsumerState<TaskView> {
   Widget build(BuildContext context) {
     final tasks = ref.watch(itemsStreamProvider);
     return Container(
+      padding: EdgeInsets.all(8),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height - 136,
       child: tasks.when(
         data: (items) {
-          print(items);
           List<Widget> tasks = [];
           items.taskData.forEach((element) {
-            print(element);
             tasks.add(TaskCard(taskData: element));
           });
           return ListView(

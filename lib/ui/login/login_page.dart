@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:task_manager/ui/components/layout/default.dart';
 import 'package:task_manager/ui/login/login_state.dart';
 import 'package:task_manager/ui/login/login_view_model.dart';

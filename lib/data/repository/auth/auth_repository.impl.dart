@@ -4,8 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:task_manager/data/model/result/result.dart';
-import 'package:task_manager/data/repository/firestore/firestore_repository.impl.dart';
-
 import 'auth_provider.dart';
 import 'auth_repository.dart';
 
@@ -17,7 +15,6 @@ class AuthRepositoryImpl implements AuthRepository {
   final Reader _reader;
 
   late final _firebaseAuth = _reader(authProvider);
-  late final _firestoreRepository = _reader(firestoreRepositoryProvider);
 
   @override
   User? get currentUser => _firebaseAuth.currentUser;

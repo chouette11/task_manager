@@ -13,7 +13,7 @@ class TaskCard extends StatelessWidget {
     int hours = diff.inHours - (days * 24);
     int minutes = diff.inMinutes - (days * 24 * 60) - (hours * 60);
     String limit = "${days.toString()}日${hours.toString()}時間${minutes.toString()}分";
-    return Container(
+    return Card(
       child: Padding(
         padding: const EdgeInsets.only(top: 4, bottom: 4, left: 8, right: 8),
         child: Column(
@@ -23,21 +23,37 @@ class TaskCard extends StatelessWidget {
                 Text(
                   taskData['task'],
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
                   ),
                 ),
-                GestureDetector(
-                  onTap: () => onCheck(taskData['id'], taskData['limit'], taskData['noLimit'], taskData['task']),
-                  child: Icon(Icons.check_circle_outline),
-                )
+                IconButton(
+                  onPressed: () => onCheck(
+                    taskData['id'],
+                    taskData['limit'],
+                    taskData['noLimit'],
+                    taskData['task'],
+                  ),
+                  icon: Icon(Icons.check_circle_outline),
+                ),
               ],
             ),
+
+            SizedBox(height: 12),
+
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(limit)
+                Text(
+                  "残り時間 $limit",
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
               ],
-            )
+            ),
+
+            SizedBox(height: 4),
           ],
         ),
       ),

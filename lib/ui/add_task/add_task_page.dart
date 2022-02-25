@@ -17,28 +17,7 @@ class AddTaskPage extends ConsumerWidget {
       backgroundColor: Colors.black,
       builder: (data) => Column(
         children: [
-          ElevatedButton(
-            onPressed: () async {
-              await viewModel.login();
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) {
-                  return TopPage();
-                },
-              ));
-            },
-            child: Text("google"),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              viewModel.login();
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) {
-                  return TopPage();
-                },
-              ),);
-            },
-            child: Text("ゲスト"),
-          ),
+
         ],
       ),
     );

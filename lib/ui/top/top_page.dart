@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/components/appbar.dart';
 import 'package:task_manager/ui/task_limit/page.dart';
-import 'package:task_manager/ui/task_view/page.dart';
+import 'package:task_manager/ui/task_view/task_view_page.dart';
 
 
 class TopPage extends StatefulWidget {
@@ -12,15 +12,15 @@ class TopPage extends StatefulWidget {
 }
 
 class _TopPageState extends State<TopPage> {
-  int pageIndex = 1;
+  int pageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
 
     Widget page;
 
-    if (pageIndex < 2) {
-      page = TaskLimitPage(pageIndex + 1);
+    if (pageIndex < 3) {
+      page = TaskLimitPage((pageIndex + 1) * pageIndex + 1);
     } else {
       page = TaskView();
     }
@@ -39,14 +39,13 @@ class _TopPageState extends State<TopPage> {
             currentIndex: pageIndex,
             items: [
               BottomNavigationBarItem(
-                label: "1",
-                icon: Icon(Icons.ac_unit, color: Colors.orange,),
-              ),
+                  label: "1日",
+                  icon: Icon(Icons.ac_unit, color: Colors.orange)),
               BottomNavigationBarItem(
-                label: "2",
-                icon: Icon(Icons.ac_unit, color: Colors.orange,)),
+                  label: "3日",
+                  icon: Icon(Icons.ac_unit, color: Colors.orange)),
               BottomNavigationBarItem(
-                  label: "3",
+                  label: "7日",
                   icon: Icon(Icons.ac_unit, color: Colors.orange,)),
               BottomNavigationBarItem(
                   label: "一覧",

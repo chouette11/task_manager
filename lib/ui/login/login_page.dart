@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:task_manager/ui/components/layout/default.dart';
 import 'package:task_manager/ui/login/login_state.dart';
 import 'package:task_manager/ui/login/login_view_model.dart';
@@ -20,11 +21,7 @@ class LoginPage extends ConsumerWidget {
           ElevatedButton(
             onPressed: () async {
               await viewModel.login();
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) {
-                  return TopPage();
-                },
-              ));
+              context.go('/top');
             },
             child: Text("google"),
           ),

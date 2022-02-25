@@ -6,8 +6,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:task_manager/types/task.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:task_manager/ui/components/appbar.dart';
+import 'package:go_router/go_router.dart';
 import 'package:task_manager/ui/login/login_page.dart';
+import 'package:task_manager/ui/top/top_page.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -88,12 +89,23 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: true,  // <- Debug の 表示を OFF
-      home: Scaffold(
-        appBar: CustomAppbar(title: "タスク一覧(通知)"),
-        body: LoginPage(),
-      ),
+
+    final _router = GoRouter(
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (context, state) => const LoginPage(),
+        ),
+        GoRoute(
+          path: '/top',
+          builder: (context, state) => const TopPage(),
+        ),
+      ],
+    );
+
+    return  MaterialApp.router(
+      routeInformationParser: _router.routeInformationParser,
+      routerDelegate: _router.routerDelegate,
     );
   }
 }

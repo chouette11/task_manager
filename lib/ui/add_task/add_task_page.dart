@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:task_manager/ui/add_task/add_task_view_model.dart';
+import 'package:task_manager/ui/add_task/components/date_text_box.dart';
 import 'package:task_manager/ui/components/form/text_field.dart';
-import 'package:task_manager/ui/components/layout/default.dart';
 import 'package:task_manager/ui/top/top_page.dart';
 
 class AddTaskPage extends ConsumerWidget {
@@ -35,39 +35,34 @@ class AddTaskPage extends ConsumerWidget {
 
                     Column(
                       children: [
-                        CustomTextFormField(
+                        DateTextBox(
                           hintText: "年",
                           initialValue: data.year.toString(),
                           onChanged: viewModel.onChangedYear,
-                          keyboardType: TextInputType.number,
                         ),
 
-                        CustomTextFormField(
+                        DateTextBox(
                           hintText: "月",
                           initialValue: data.month.toString(),
                           onChanged: viewModel.onChangedMonth,
-                          keyboardType: TextInputType.number,
                         ),
 
-                        CustomTextFormField(
+                        DateTextBox(
                           hintText: "日",
                           initialValue: data.day.toString(),
                           onChanged: viewModel.onChangedDay,
-                          keyboardType: TextInputType.number,
                         ),
 
-                        CustomTextFormField(
+                        DateTextBox(
                           hintText: "時",
                           initialValue: data.hour.toString(),
                           onChanged: viewModel.onChangedHour,
-                          keyboardType: TextInputType.number,
                         ),
 
-                        CustomTextFormField(
+                        DateTextBox(
                           hintText: "分",
                           initialValue: data.minute.toString(),
                           onChanged: viewModel.onChangedMinute,
-                          keyboardType: TextInputType.number,
                         ),
                       ],
                     ),

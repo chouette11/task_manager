@@ -9,6 +9,7 @@ class CustomTextFormField extends ConsumerWidget {
     this.validator,
     this.onChanged,
     this.hintText,
+    this.controller,
     this.labelText,
     this.obscureText = false,
     this.keyboardType,
@@ -16,6 +17,7 @@ class CustomTextFormField extends ConsumerWidget {
   final String? initialValue;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
+  final TextEditingController? controller;
   final String? hintText;
   final String? labelText;
   final bool obscureText;
@@ -28,6 +30,7 @@ class CustomTextFormField extends ConsumerWidget {
       initialValue: initialValue,
       validator: validator,
       onChanged: onChanged,
+      controller: controller,
       keyboardType: keyboardType,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(

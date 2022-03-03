@@ -29,32 +29,46 @@ class AddTaskViewModel extends StateNotifier<AsyncValue<AddTaskState>> {
     );
   }
 
-  /// 年
+  /// onAddDate
+  void onAddDate(int year, int month, int day, int hour, int minute) {
+    state = AsyncValue.data(
+      AddTaskState(
+        task: state.value!.task,
+        year: state.value!.year + year,
+        month: state.value!.month + month,
+        day: state.value!.day + day,
+        hour: state.value!.hour + hour,
+        minute: state.value!.minute + minute,
+      ),
+    );
+  }
+
+  /// 年 onChanged
   void onChangedYear(String value) {
     state = AsyncValue.data(state.value!.copyWith(year: int.parse(value)));
   }
 
-  /// 月
+  /// 月 onChanged
   void onChangedMonth(String value) {
     state = AsyncValue.data(state.value!.copyWith(month: int.parse(value)));
   }
 
-  /// 日
+  /// 日 onChanged
   void onChangedDay(String value) {
     state = AsyncValue.data(state.value!.copyWith(day: int.parse(value)));
   }
 
-  /// 時間
+  /// 時間 onChanged
   void onChangedHour(String value) {
     state = AsyncValue.data(state.value!.copyWith(hour: int.parse(value)));
   }
 
-  /// 分
+  /// 分 onChanged
   void onChangedMinute(String value) {
     state = AsyncValue.data(state.value!.copyWith(minute: int.parse(value)));
   }
 
-  /// タスク
+  /// タスク onChanged
   void onChangedTask(String value) {
     state = AsyncValue.data(state.value!.copyWith(task: value));
   }

@@ -16,34 +16,78 @@ class AddTaskPage extends ConsumerWidget {
 
     return state.when(
       data: (data) {
-        return Column(
-          children: [
-            Text("タスクを入力してね"),
+        return Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.8,
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.white,
+              ),
+              child: Center(
+                child: Column(
+                  children: [
+                    Text("タスクを入力してね"),
 
-            Row(
-              children: [
-                CustomTextFormField(
-                  hintText: "年",
-                  initialValue: data.task,
-                  onChanged: viewModel.onChangedTask,
-                  keyboardType: TextInputType.emailAddress,
+                    Column(
+                      children: [
+                        CustomTextFormField(
+                          hintText: "年",
+                          initialValue: data.year.toString(),
+                          onChanged: viewModel.onChangedYear,
+                          keyboardType: TextInputType.number,
+                        ),
+
+                        CustomTextFormField(
+                          hintText: "月",
+                          initialValue: data.month.toString(),
+                          onChanged: viewModel.onChangedMonth,
+                          keyboardType: TextInputType.number,
+                        ),
+
+                        CustomTextFormField(
+                          hintText: "日",
+                          initialValue: data.day.toString(),
+                          onChanged: viewModel.onChangedDay,
+                          keyboardType: TextInputType.number,
+                        ),
+
+                        CustomTextFormField(
+                          hintText: "時",
+                          initialValue: data.hour.toString(),
+                          onChanged: viewModel.onChangedHour,
+                          keyboardType: TextInputType.number,
+                        ),
+
+                        CustomTextFormField(
+                          hintText: "分",
+                          initialValue: data.minute.toString(),
+                          onChanged: viewModel.onChangedMinute,
+                          keyboardType: TextInputType.number,
+                        ),
+                      ],
+                    ),
+
+                    CustomTextFormField(
+                      hintText: "タスク",
+                      initialValue: data.task,
+                      onChanged: viewModel.onChangedTask,
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+
+                    ElevatedButton(
+                      onPressed: () => context.pop(),
+                      child: Text("OK"),
+                    ),
+                  ],
                 ),
-
-              ],
+              ),
             ),
-
-            CustomTextFormField(
-              hintText: "タスク",
-              initialValue: data.task,
-              onChanged: viewModel.onChangedTask,
-              keyboardType: TextInputType.emailAddress,
-            ),
-
-            ElevatedButton(
-              onPressed: () => context.pop(),
-              child: Text("OK"),
-            ),
-          ],
+          ),
         );
       },
       error: (e, stackTrace) => TopPage(),

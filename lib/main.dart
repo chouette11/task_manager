@@ -7,6 +7,7 @@ import 'package:task_manager/types/task.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:go_router/go_router.dart';
+import 'package:task_manager/ui/add_task/add_task_page.dart';
 import 'package:task_manager/ui/login/login_page.dart';
 import 'package:task_manager/ui/top/top_page.dart';
 
@@ -93,12 +94,16 @@ class _MyAppState extends State<MyApp> {
     final _router = GoRouter(
       routes: [
         GoRoute(
-          path: '/',
+          path: '/login',
           builder: (context, state) => const LoginPage(),
         ),
         GoRoute(
-          path: '/top',
+          path: '/',
           builder: (context, state) => const TopPage(),
+        ),
+        GoRoute(
+          path: '/add_task',
+          builder: (context, state) => const AddTaskPage(),
         ),
       ],
     );

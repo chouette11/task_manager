@@ -20,11 +20,11 @@ class _$AddTaskStateTearOff {
 
   _AddTaskState call(
       {String task = "",
-      String year = "",
-      String month = "",
-      String day = "",
-      String hour = "",
-      String minute = ""}) {
+      int year = 0,
+      int month = 0,
+      int day = 0,
+      int hour = 0,
+      int minute = 0}) {
     return _AddTaskState(
       task: task,
       year: year,
@@ -42,11 +42,11 @@ const $AddTaskState = _$AddTaskStateTearOff();
 /// @nodoc
 mixin _$AddTaskState {
   String get task => throw _privateConstructorUsedError;
-  String get year => throw _privateConstructorUsedError;
-  String get month => throw _privateConstructorUsedError;
-  String get day => throw _privateConstructorUsedError;
-  String get hour => throw _privateConstructorUsedError;
-  String get minute => throw _privateConstructorUsedError;
+  int get year => throw _privateConstructorUsedError;
+  int get month => throw _privateConstructorUsedError;
+  int get day => throw _privateConstructorUsedError;
+  int get hour => throw _privateConstructorUsedError;
+  int get minute => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AddTaskStateCopyWith<AddTaskState> get copyWith =>
@@ -58,13 +58,7 @@ abstract class $AddTaskStateCopyWith<$Res> {
   factory $AddTaskStateCopyWith(
           AddTaskState value, $Res Function(AddTaskState) then) =
       _$AddTaskStateCopyWithImpl<$Res>;
-  $Res call(
-      {String task,
-      String year,
-      String month,
-      String day,
-      String hour,
-      String minute});
+  $Res call({String task, int year, int month, int day, int hour, int minute});
 }
 
 /// @nodoc
@@ -92,23 +86,23 @@ class _$AddTaskStateCopyWithImpl<$Res> implements $AddTaskStateCopyWith<$Res> {
       year: year == freezed
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       month: month == freezed
           ? _value.month
           : month // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       day: day == freezed
           ? _value.day
           : day // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       hour: hour == freezed
           ? _value.hour
           : hour // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       minute: minute == freezed
           ? _value.minute
           : minute // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -120,13 +114,7 @@ abstract class _$AddTaskStateCopyWith<$Res>
           _AddTaskState value, $Res Function(_AddTaskState) then) =
       __$AddTaskStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String task,
-      String year,
-      String month,
-      String day,
-      String hour,
-      String minute});
+  $Res call({String task, int year, int month, int day, int hour, int minute});
 }
 
 /// @nodoc
@@ -156,23 +144,23 @@ class __$AddTaskStateCopyWithImpl<$Res> extends _$AddTaskStateCopyWithImpl<$Res>
       year: year == freezed
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       month: month == freezed
           ? _value.month
           : month // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       day: day == freezed
           ? _value.day
           : day // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       hour: hour == freezed
           ? _value.hour
           : hour // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       minute: minute == freezed
           ? _value.minute
           : minute // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -182,30 +170,30 @@ class __$AddTaskStateCopyWithImpl<$Res> extends _$AddTaskStateCopyWithImpl<$Res>
 class _$_AddTaskState implements _AddTaskState {
   const _$_AddTaskState(
       {this.task = "",
-      this.year = "",
-      this.month = "",
-      this.day = "",
-      this.hour = "",
-      this.minute = ""});
+      this.year = 0,
+      this.month = 0,
+      this.day = 0,
+      this.hour = 0,
+      this.minute = 0});
 
   @JsonKey()
   @override
   final String task;
   @JsonKey()
   @override
-  final String year;
+  final int year;
   @JsonKey()
   @override
-  final String month;
+  final int month;
   @JsonKey()
   @override
-  final String day;
+  final int day;
   @JsonKey()
   @override
-  final String hour;
+  final int hour;
   @JsonKey()
   @override
-  final String minute;
+  final int minute;
 
   @override
   String toString() {
@@ -244,24 +232,24 @@ class _$_AddTaskState implements _AddTaskState {
 abstract class _AddTaskState implements AddTaskState {
   const factory _AddTaskState(
       {String task,
-      String year,
-      String month,
-      String day,
-      String hour,
-      String minute}) = _$_AddTaskState;
+      int year,
+      int month,
+      int day,
+      int hour,
+      int minute}) = _$_AddTaskState;
 
   @override
   String get task;
   @override
-  String get year;
+  int get year;
   @override
-  String get month;
+  int get month;
   @override
-  String get day;
+  int get day;
   @override
-  String get hour;
+  int get hour;
   @override
-  String get minute;
+  int get minute;
   @override
   @JsonKey(ignore: true)
   _$AddTaskStateCopyWith<_AddTaskState> get copyWith =>

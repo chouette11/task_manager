@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/add_task/add_task_page.dart';
 import 'package:task_manager/ui/components/appbar.dart';
 import 'package:task_manager/ui/task_limit/page.dart';
 import 'package:task_manager/ui/task_view/task_view_page.dart';
@@ -53,6 +54,12 @@ class _TopPageState extends State<TopPage> {
             ],
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => showDialog(
+            context: context,
+            builder: (_) => AddTaskPage(),
+        ),
       ),
     );
   }

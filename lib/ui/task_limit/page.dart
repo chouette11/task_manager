@@ -24,9 +24,6 @@ class OneDayTaskState extends ConsumerState<TaskLimitPage> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height - 136,
-      decoration: BoxDecoration(
-          border: Border.all()
-      ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

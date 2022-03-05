@@ -7,9 +7,7 @@ part 'task_document.g.dart';
 @freezed
 abstract class TaskDocument with _$TaskDocument {
   factory TaskDocument({
-    required String id,
-    @Default("") String name,
-    @Default("") String token,
+    required List<Map<String, dynamic>> taskData,
   }) = _TaskDocument;
 
   factory TaskDocument.fromDocument(DocumentSnapshot doc) {

@@ -8,14 +8,12 @@ part of 'task_document.dart';
 
 _$_TaskDocument _$$_TaskDocumentFromJson(Map<String, dynamic> json) =>
     _$_TaskDocument(
-      id: json['id'] as String,
-      name: json['name'] as String? ?? "",
-      token: json['token'] as String? ?? "",
+      taskData: (json['taskData'] as List<dynamic>)
+          .map((e) => e as Map<String, dynamic>)
+          .toList(),
     );
 
 Map<String, dynamic> _$$_TaskDocumentToJson(_$_TaskDocument instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'token': instance.token,
+      'taskData': instance.taskData,
     };

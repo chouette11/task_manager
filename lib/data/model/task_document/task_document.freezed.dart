@@ -22,12 +22,9 @@ TaskDocument _$TaskDocumentFromJson(Map<String, dynamic> json) {
 class _$TaskDocumentTearOff {
   const _$TaskDocumentTearOff();
 
-  _TaskDocument call(
-      {required String id, String name = "", String token = ""}) {
+  _TaskDocument call({required List<Map<String, dynamic>> taskData}) {
     return _TaskDocument(
-      id: id,
-      name: name,
-      token: token,
+      taskData: taskData,
     );
   }
 
@@ -41,9 +38,7 @@ const $TaskDocument = _$TaskDocumentTearOff();
 
 /// @nodoc
 mixin _$TaskDocument {
-  String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get token => throw _privateConstructorUsedError;
+  List<Map<String, dynamic>> get taskData => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +51,7 @@ abstract class $TaskDocumentCopyWith<$Res> {
   factory $TaskDocumentCopyWith(
           TaskDocument value, $Res Function(TaskDocument) then) =
       _$TaskDocumentCopyWithImpl<$Res>;
-  $Res call({String id, String name, String token});
+  $Res call({List<Map<String, dynamic>> taskData});
 }
 
 /// @nodoc
@@ -69,23 +64,13 @@ class _$TaskDocumentCopyWithImpl<$Res> implements $TaskDocumentCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? token = freezed,
+    Object? taskData = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
+      taskData: taskData == freezed
+          ? _value.taskData
+          : taskData // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>,
     ));
   }
 }
@@ -97,7 +82,7 @@ abstract class _$TaskDocumentCopyWith<$Res>
           _TaskDocument value, $Res Function(_TaskDocument) then) =
       __$TaskDocumentCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, String token});
+  $Res call({List<Map<String, dynamic>> taskData});
 }
 
 /// @nodoc
@@ -112,23 +97,13 @@ class __$TaskDocumentCopyWithImpl<$Res> extends _$TaskDocumentCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? token = freezed,
+    Object? taskData = freezed,
   }) {
     return _then(_TaskDocument(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
+      taskData: taskData == freezed
+          ? _value.taskData
+          : taskData // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>,
     ));
   }
 }
@@ -136,23 +111,17 @@ class __$TaskDocumentCopyWithImpl<$Res> extends _$TaskDocumentCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_TaskDocument implements _TaskDocument {
-  _$_TaskDocument({required this.id, this.name = "", this.token = ""});
+  _$_TaskDocument({required this.taskData});
 
   factory _$_TaskDocument.fromJson(Map<String, dynamic> json) =>
       _$$_TaskDocumentFromJson(json);
 
   @override
-  final String id;
-  @JsonKey()
-  @override
-  final String name;
-  @JsonKey()
-  @override
-  final String token;
+  final List<Map<String, dynamic>> taskData;
 
   @override
   String toString() {
-    return 'TaskDocument(id: $id, name: $name, token: $token)';
+    return 'TaskDocument(taskData: $taskData)';
   }
 
   @override
@@ -160,17 +129,12 @@ class _$_TaskDocument implements _TaskDocument {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _TaskDocument &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.token, token));
+            const DeepCollectionEquality().equals(other.taskData, taskData));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(token));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(taskData));
 
   @JsonKey(ignore: true)
   @override
@@ -184,18 +148,14 @@ class _$_TaskDocument implements _TaskDocument {
 }
 
 abstract class _TaskDocument implements TaskDocument {
-  factory _TaskDocument({required String id, String name, String token}) =
+  factory _TaskDocument({required List<Map<String, dynamic>> taskData}) =
       _$_TaskDocument;
 
   factory _TaskDocument.fromJson(Map<String, dynamic> json) =
       _$_TaskDocument.fromJson;
 
   @override
-  String get id;
-  @override
-  String get name;
-  @override
-  String get token;
+  List<Map<String, dynamic>> get taskData;
   @override
   @JsonKey(ignore: true)
   _$TaskDocumentCopyWith<_TaskDocument> get copyWith =>

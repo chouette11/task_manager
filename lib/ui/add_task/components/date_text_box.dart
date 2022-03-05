@@ -5,13 +5,15 @@ class DateTextBox extends StatelessWidget {
   const DateTextBox({
     Key? key,
     required this.hintText,
-    required this.initialValue,
-    required this.onChanged,
-    this.buttons
+    this.initialValue,
+    this.controller,
+    this.onChanged,
+    this.buttons,
   }) : super(key: key);
   final String hintText;
-  final String initialValue;
-  final Function(String) onChanged;
+  final String? initialValue;
+  final TextEditingController? controller;
+  final Function(String)? onChanged;
   final List<Widget>? buttons;
 
   @override
@@ -24,6 +26,7 @@ class DateTextBox extends StatelessWidget {
           child: CustomTextFormField(
             hintText: hintText,
             initialValue: initialValue,
+            controller: controller,
             onChanged: onChanged,
             keyboardType: TextInputType.number,
           ),

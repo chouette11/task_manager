@@ -147,6 +147,11 @@ class _AddTaskState extends ConsumerState<AddTaskPage> {
                         keyboardType: TextInputType.emailAddress,
                       ),
 
+                      Check(
+                        value: data.isChecked,
+                        onChanged: viewModel.onChecked,
+                      ),
+
                       ElevatedButton(
                         onPressed: () => viewModel.onAddTask(context),
                         child: Text("OK"),

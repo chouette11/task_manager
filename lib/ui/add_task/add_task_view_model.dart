@@ -41,6 +41,24 @@ class AddTaskViewModel extends StateNotifier<AsyncValue<AddTaskState>> {
         minute: state.value!.minute + minute,
       ),
     );
+
+    if (state.value!.month > 12) {
+      final month = state.value!.month - 12;
+      state = AsyncValue.data(state.value!.copyWith(month: month));
+    }
+    if (state.value!.day > 31) {
+      final day = state.value!.day - 31;
+      state = AsyncValue.data(state.value!.copyWith(day: day));
+    }
+    if (state.value!.hour > 24) {
+      final hour = state.value!.hour - 24;
+      state = AsyncValue.data(state.value!.copyWith(hour: hour));
+    }
+    if (state.value!.minute > 60) {
+      final minute = state.value!.minute - 60;
+      state = AsyncValue.data(state.value!.copyWith(minute: minute));
+    }
+
   }
 
   /// 年 onChanged

@@ -55,32 +55,85 @@ class _AddTaskState extends ConsumerState<AddTaskPage> {
                       children: [
                         DateTextBox(
                           hintText: "年",
-                          initialValue: data.year.toString(),
-                          onChanged: viewModel.onChangedYear,
+                          controller: _yearController,
+                          buttons: [
+                            AddDateButton(
+                              title: "+1",
+                              onPressed: () => viewModel.onAddDate(1, 0, 0, 0, 0),
+                            ),
+                          ],
                         ),
 
                         DateTextBox(
                           hintText: "月",
-                          initialValue: data.month.toString(),
-                          onChanged: viewModel.onChangedMonth,
+                          controller: _monthController,
+                          buttons: [
+                            AddDateButton(
+                              title: "+1",
+                              onPressed: () => viewModel.onAddDate(0, 1, 0, 0, 0),
+                            ),
+                            AddDateButton(
+                              title: "+2",
+                              onPressed: () => viewModel.onAddDate(0, 2, 0, 0, 0),
+                            ),
+                          ],
                         ),
 
                         DateTextBox(
                           hintText: "日",
-                          initialValue: data.day.toString(),
-                          onChanged: viewModel.onChangedDay,
+                          controller: _dayController,
+                          buttons: [
+                            AddDateButton(
+                              title: "+1",
+                              onPressed: () => viewModel.onAddDate(0, 0, 1, 0, 0),
+                            ),
+                            AddDateButton(
+                              title: "+3",
+                              onPressed: () => viewModel.onAddDate(0, 0, 3, 0, 0),
+                            ),
+                            AddDateButton(
+                              title: "+7",
+                              onPressed: () => viewModel.onAddDate(0, 0, 7, 0, 0),
+                            ),
+                          ],
                         ),
 
                         DateTextBox(
                           hintText: "時",
-                          initialValue: data.hour.toString(),
-                          onChanged: viewModel.onChangedHour,
+                          controller: _hourController,
+                          buttons: [
+                            AddDateButton(
+                              title: "+1",
+                              onPressed: () => viewModel.onAddDate(0, 0, 0, 1, 0),
+                            ),
+                            AddDateButton(
+                              title: "+3",
+                              onPressed: () => viewModel.onAddDate(0, 0, 0, 3, 0),
+                            ),
+                            AddDateButton(
+                              title: "+6",
+                              onPressed: () => viewModel.onAddDate(0, 0, 0, 6, 0),
+                            ),
+                          ],
                         ),
 
                         DateTextBox(
                           hintText: "分",
-                          initialValue: data.minute.toString(),
-                          onChanged: viewModel.onChangedMinute,
+                          controller: _minuteController,
+                          buttons: [
+                            AddDateButton(
+                              title: "+5",
+                              onPressed: () => viewModel.onAddDate(0, 0, 0, 0, 5),
+                            ),
+                            AddDateButton(
+                              title: "+20",
+                              onPressed: () => viewModel.onAddDate(0, 0, 0, 0, 20),
+                            ),
+                            AddDateButton(
+                              title: "+30",
+                              onPressed: () => viewModel.onAddDate(0, 0, 0, 0, 30),
+                            ),
+                          ],
                         ),
                       ],
                     ),

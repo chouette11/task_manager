@@ -58,4 +58,25 @@ class FirestoreRepositoryImpl implements FirestoreRepository {
       }
     });
   }
+
+  @override
+  Future<Result<void>> addTask({
+    required Map<String, dynamic> task,
+  }) {
+    return Result.guardFuture(() async {
+      final currentUser = _authRepository.currentUser;
+      if (currentUser != null) {
+        await _tasksCollection.doc("フクダ").update({
+            'taskData': FieldValue.arrayUnion([task]),
+          }
+        );
+      } else {
+        throw FirebaseAuthException(
+          code: 'auth/custom-error',
+          message: 'The authenticated user does not exist.',
+        );
+      }
+    });
+  }
+
 }

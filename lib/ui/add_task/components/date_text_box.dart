@@ -34,6 +34,7 @@ class DateTextBox extends StatelessWidget {
 
         Text(hintText),
 
+        buttons != null ? Row(children: buttons!) : Container(),
       ],
     );
   }

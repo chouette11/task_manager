@@ -150,7 +150,7 @@ class _AddTaskState extends ConsumerState<AddTaskPage> {
 
 
                       ElevatedButton(
-                        onPressed: () => context.pop(),
+                        onPressed: () => viewModel.onAddTask(context),
                         child: Text("OK"),
                       ),
                     ],

@@ -24,7 +24,8 @@ class _$AddTaskStateTearOff {
       int month = 0,
       int day = 0,
       int hour = 0,
-      int minute = 0}) {
+      int minute = 0,
+      bool isChecked = false}) {
     return _AddTaskState(
       task: task,
       year: year,
@@ -32,6 +33,7 @@ class _$AddTaskStateTearOff {
       day: day,
       hour: hour,
       minute: minute,
+      isChecked: isChecked,
     );
   }
 }
@@ -47,6 +49,7 @@ mixin _$AddTaskState {
   int get day => throw _privateConstructorUsedError;
   int get hour => throw _privateConstructorUsedError;
   int get minute => throw _privateConstructorUsedError;
+  bool get isChecked => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AddTaskStateCopyWith<AddTaskState> get copyWith =>
@@ -58,7 +61,14 @@ abstract class $AddTaskStateCopyWith<$Res> {
   factory $AddTaskStateCopyWith(
           AddTaskState value, $Res Function(AddTaskState) then) =
       _$AddTaskStateCopyWithImpl<$Res>;
-  $Res call({String task, int year, int month, int day, int hour, int minute});
+  $Res call(
+      {String task,
+      int year,
+      int month,
+      int day,
+      int hour,
+      int minute,
+      bool isChecked});
 }
 
 /// @nodoc
@@ -77,6 +87,7 @@ class _$AddTaskStateCopyWithImpl<$Res> implements $AddTaskStateCopyWith<$Res> {
     Object? day = freezed,
     Object? hour = freezed,
     Object? minute = freezed,
+    Object? isChecked = freezed,
   }) {
     return _then(_value.copyWith(
       task: task == freezed
@@ -103,6 +114,10 @@ class _$AddTaskStateCopyWithImpl<$Res> implements $AddTaskStateCopyWith<$Res> {
           ? _value.minute
           : minute // ignore: cast_nullable_to_non_nullable
               as int,
+      isChecked: isChecked == freezed
+          ? _value.isChecked
+          : isChecked // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -114,7 +129,14 @@ abstract class _$AddTaskStateCopyWith<$Res>
           _AddTaskState value, $Res Function(_AddTaskState) then) =
       __$AddTaskStateCopyWithImpl<$Res>;
   @override
-  $Res call({String task, int year, int month, int day, int hour, int minute});
+  $Res call(
+      {String task,
+      int year,
+      int month,
+      int day,
+      int hour,
+      int minute,
+      bool isChecked});
 }
 
 /// @nodoc
@@ -135,6 +157,7 @@ class __$AddTaskStateCopyWithImpl<$Res> extends _$AddTaskStateCopyWithImpl<$Res>
     Object? day = freezed,
     Object? hour = freezed,
     Object? minute = freezed,
+    Object? isChecked = freezed,
   }) {
     return _then(_AddTaskState(
       task: task == freezed
@@ -161,6 +184,10 @@ class __$AddTaskStateCopyWithImpl<$Res> extends _$AddTaskStateCopyWithImpl<$Res>
           ? _value.minute
           : minute // ignore: cast_nullable_to_non_nullable
               as int,
+      isChecked: isChecked == freezed
+          ? _value.isChecked
+          : isChecked // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -174,7 +201,8 @@ class _$_AddTaskState implements _AddTaskState {
       this.month = 0,
       this.day = 0,
       this.hour = 0,
-      this.minute = 0});
+      this.minute = 0,
+      this.isChecked = false});
 
   @JsonKey()
   @override
@@ -194,10 +222,13 @@ class _$_AddTaskState implements _AddTaskState {
   @JsonKey()
   @override
   final int minute;
+  @JsonKey()
+  @override
+  final bool isChecked;
 
   @override
   String toString() {
-    return 'AddTaskState(task: $task, year: $year, month: $month, day: $day, hour: $hour, minute: $minute)';
+    return 'AddTaskState(task: $task, year: $year, month: $month, day: $day, hour: $hour, minute: $minute, isChecked: $isChecked)';
   }
 
   @override
@@ -210,7 +241,8 @@ class _$_AddTaskState implements _AddTaskState {
             const DeepCollectionEquality().equals(other.month, month) &&
             const DeepCollectionEquality().equals(other.day, day) &&
             const DeepCollectionEquality().equals(other.hour, hour) &&
-            const DeepCollectionEquality().equals(other.minute, minute));
+            const DeepCollectionEquality().equals(other.minute, minute) &&
+            const DeepCollectionEquality().equals(other.isChecked, isChecked));
   }
 
   @override
@@ -221,7 +253,8 @@ class _$_AddTaskState implements _AddTaskState {
       const DeepCollectionEquality().hash(month),
       const DeepCollectionEquality().hash(day),
       const DeepCollectionEquality().hash(hour),
-      const DeepCollectionEquality().hash(minute));
+      const DeepCollectionEquality().hash(minute),
+      const DeepCollectionEquality().hash(isChecked));
 
   @JsonKey(ignore: true)
   @override
@@ -236,7 +269,8 @@ abstract class _AddTaskState implements AddTaskState {
       int month,
       int day,
       int hour,
-      int minute}) = _$_AddTaskState;
+      int minute,
+      bool isChecked}) = _$_AddTaskState;
 
   @override
   String get task;
@@ -250,6 +284,8 @@ abstract class _AddTaskState implements AddTaskState {
   int get hour;
   @override
   int get minute;
+  @override
+  bool get isChecked;
   @override
   @JsonKey(ignore: true)
   _$AddTaskStateCopyWith<_AddTaskState> get copyWith =>

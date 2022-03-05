@@ -103,7 +103,7 @@ class AddTaskViewModel extends StateNotifier<AsyncValue<AddTaskState>> {
     final Map<String, dynamic> taskData = {
       'id': 104,
       'limit': limit,
-      'noLimit': false,
+      'noLimit': value.isChecked,
       'task': value.task,
     };
     await firestoreRepository.addTask(task: taskData);

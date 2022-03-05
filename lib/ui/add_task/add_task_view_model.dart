@@ -109,4 +109,8 @@ class AddTaskViewModel extends StateNotifier<AsyncValue<AddTaskState>> {
     await firestoreRepository.addTask(task: taskData);
     context.push('/');
   }
+
+  void onChecked(bool? value) {
+    state = AsyncValue.data(state.value!.copyWith(isChecked: value!));
+  }
 }

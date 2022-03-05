@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:task_manager/ui/add_task/add_task_view_model.dart';
 import 'package:task_manager/ui/add_task/components/date_add_button.dart';
 import 'package:task_manager/ui/add_task/components/date_text_box.dart';
@@ -51,13 +49,12 @@ class _AddTaskState extends ConsumerState<AddTaskPage> {
                 child: Center(
                   child: Column(
                     children: [
-                      Text("タスクを入力してね"),
-
                       Column(
                         children: [
                           DateTextBox(
                             hintText: "年",
                             controller: _yearController,
+                            onChanged: viewModel.onChangedYear,
                             buttons: [
                               AddDateButton(
                                 title: "+1",
@@ -69,6 +66,7 @@ class _AddTaskState extends ConsumerState<AddTaskPage> {
                           DateTextBox(
                             hintText: "月",
                             controller: _monthController,
+                            onChanged: viewModel.onChangedMonth,
                             buttons: [
                               AddDateButton(
                                 title: "+1",
@@ -84,6 +82,7 @@ class _AddTaskState extends ConsumerState<AddTaskPage> {
                           DateTextBox(
                             hintText: "日",
                             controller: _dayController,
+                            onChanged: viewModel.onChangedDay,
                             buttons: [
                               AddDateButton(
                                 title: "+1",
@@ -103,6 +102,7 @@ class _AddTaskState extends ConsumerState<AddTaskPage> {
                           DateTextBox(
                             hintText: "時",
                             controller: _hourController,
+                            onChanged: viewModel.onChangedHour,
                             buttons: [
                               AddDateButton(
                                 title: "+1",
@@ -122,6 +122,7 @@ class _AddTaskState extends ConsumerState<AddTaskPage> {
                           DateTextBox(
                             hintText: "分",
                             controller: _minuteController,
+                            onChanged: viewModel.onChangedMinute,
                             buttons: [
                               AddDateButton(
                                 title: "+5",
@@ -141,13 +142,10 @@ class _AddTaskState extends ConsumerState<AddTaskPage> {
                       ),
 
                       CustomTextFormField(
-                        hintText: "タスク",
-                        initialValue: data.task,
+                        hintText: "タスクを入力してください",
                         onChanged: viewModel.onChangedTask,
                         keyboardType: TextInputType.emailAddress,
                       ),
-
-
 
                       ElevatedButton(
                         onPressed: () => viewModel.onAddTask(context),

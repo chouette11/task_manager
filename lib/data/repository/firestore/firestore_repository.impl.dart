@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/data/model/result/result.dart';
@@ -17,14 +18,14 @@ class FirestoreRepositoryImpl implements FirestoreRepository {
   late final _authRepository = _reader(authRepositoryProvider);
 
   /// ユーザーコレクション
-  late final _usersCollection = _firestore.collection('users');
+  late final _tasksCollection = _firestore.collection('tasks');
 
   @override
   Future<Result<UserDocument>> getUser() {
     return Result.guardFuture(() async {
       final currentUser = _authRepository.currentUser;
       if (currentUser != null) {
-        final doc = await _usersCollection.doc(currentUser.uid).get();
+        final doc = await _tasksCollection.doc(currentUser.uid).get();
         final user = UserDocument.fromDocument(doc);
         return user;
       } else {
@@ -49,7 +50,7 @@ class FirestoreRepositoryImpl implements FirestoreRepository {
           name: name,
           token: token,
         );
-        await _usersCollection.doc(currentUser.uid).set(createUser.toJson());
+        await _tasksCollection.doc(currentUser.uid).set(createUser.toJson());
       } else {
         throw FirebaseAuthException(
           code: 'auth/custom-error',

@@ -6,7 +6,7 @@ import 'package:task_manager/ui/add_task/components/date_text_box.dart';
 import 'package:task_manager/ui/components/form/text_field.dart';
 import 'package:task_manager/ui/top/top_page.dart';
 
-class AddTaskPage extends ConsumerWidget {
+class AddTaskPage extends ConsumerStatefulWidget {
   const AddTaskPage({Key? key}) : super(key: key);
 
   @override

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:task_manager/ui/add_task/add_task_view_model.dart';
+import 'package:task_manager/ui/add_task/components/date_add_button.dart';
 import 'package:task_manager/ui/add_task/components/date_text_box.dart';
 import 'package:task_manager/ui/components/form/text_field.dart';
 import 'package:task_manager/ui/top/top_page.dart';
@@ -10,12 +11,29 @@ class AddTaskPage extends ConsumerStatefulWidget {
   const AddTaskPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _AddTaskState createState() => _AddTaskState();
+}
+
+class _AddTaskState extends ConsumerState<AddTaskPage> {
+  final TextEditingController _yearController = TextEditingController();
+  final TextEditingController _monthController = TextEditingController();
+  final TextEditingController _dayController = TextEditingController();
+  final TextEditingController _hourController = TextEditingController();
+  final TextEditingController _minuteController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
     final state = ref.watch(addTaskViewModelProvider);
     final viewModel = ref.watch(addTaskViewModelProvider.notifier);
 
     return state.when(
       data: (data) {
+        _yearController.text = data.year.toString();
+        _monthController.text = data.month.toString();
+        _dayController.text = data.day.toString();
+        _hourController.text = data.hour.toString();
+        _minuteController.text = data.minute.toString();
+
         return Scaffold(
           backgroundColor: Colors.transparent,
           body: Padding(

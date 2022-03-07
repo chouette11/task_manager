@@ -11,5 +11,6 @@ class AddTaskState with _$AddTaskState {
     @Default(0) int day,
     @Default(0) int hour,
     @Default(0) int minute,
+    @Default(false) bool isChecked,
   }) = _AddTaskState;
 }

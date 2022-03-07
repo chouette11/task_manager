@@ -9,4 +9,8 @@ abstract class FirestoreRepository {
     required String name,
     required String token,
   });
+
+  Future<Result<void>> addTask({
+    required Map<String, dynamic> task
+  });
 }

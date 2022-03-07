@@ -32,9 +32,25 @@ class DateTextBox extends StatelessWidget {
           ),
         ),
 
-        Text(hintText),
+        SizedBox(width: 4),
 
-        buttons != null ? Row(children: buttons!) : Container(),
+        Text(
+          hintText,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
+
+        SizedBox(width: 8),
+
+        buttons != null ?
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: buttons!,
+          ),
+        ) : Container(),
       ],
     );
   }

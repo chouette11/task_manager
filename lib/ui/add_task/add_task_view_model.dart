@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:task_manager/data/repository/firestore/firestore_repository.impl.dart';
 import 'package:task_manager/ui/add_task/add_task_state.dart';
 
 final addTaskViewModelProvider =
@@ -13,6 +16,8 @@ class AddTaskViewModel extends StateNotifier<AsyncValue<AddTaskState>> {
         super(const AsyncLoading()) {
     load();
   }
+
+  late final firestoreRepository = _ref.read(firestoreRepositoryProvider);
 
   /// 通信、初期化処理
   Future<void> load() async {
@@ -91,4 +96,21 @@ class AddTaskViewModel extends StateNotifier<AsyncValue<AddTaskState>> {
     state = AsyncValue.data(state.value!.copyWith(task: value));
   }
 
+  /// タスク onAdd
+  Future<void> onAddTask(BuildContext context) async {
+    final value = state.value!;
+    final limit = DateTime(value.year, value.month, value.day, value.hour, value.minute);
+    final Map<String, dynamic> taskData = {
+      'id': 104,
+      'limit': limit,
+      'noLimit': value.isChecked,
+      'task': value.task,
+    };
+    await firestoreRepository.addTask(task: taskData);
+    context.push('/');
+  }
+
+  void onChecked(bool? value) {
+    state = AsyncValue.data(state.value!.copyWith(isChecked: value!));
+  }
 }

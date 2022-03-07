@@ -44,12 +44,13 @@ class TaskCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                taskData['noLimit'] == false ?
                 Text(
                   "残り時間 $limit",
                   style: TextStyle(
                     fontSize: 16,
                   ),
-                ),
+                ) : Container(),
               ],
             ),
 

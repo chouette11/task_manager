@@ -18,9 +18,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ViewTaskStateTearOff {
   const _$ViewTaskStateTearOff();
 
-  _ViewTaskState call({int tabIndex = 0}) {
+  _ViewTaskState call(
+      {List<Widget> before = const [],
+      List<Widget> after = const [],
+      List<Widget> no = const []}) {
     return _ViewTaskState(
-      tabIndex: tabIndex,
+      before: before,
+      after: after,
+      no: no,
     );
   }
 }
@@ -30,7 +35,9 @@ const $ViewTaskState = _$ViewTaskStateTearOff();
 
 /// @nodoc
 mixin _$ViewTaskState {
-  int get tabIndex => throw _privateConstructorUsedError;
+  List<Widget> get before => throw _privateConstructorUsedError;
+  List<Widget> get after => throw _privateConstructorUsedError;
+  List<Widget> get no => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ViewTaskStateCopyWith<ViewTaskState> get copyWith =>
@@ -42,7 +49,7 @@ abstract class $ViewTaskStateCopyWith<$Res> {
   factory $ViewTaskStateCopyWith(
           ViewTaskState value, $Res Function(ViewTaskState) then) =
       _$ViewTaskStateCopyWithImpl<$Res>;
-  $Res call({int tabIndex});
+  $Res call({List<Widget> before, List<Widget> after, List<Widget> no});
 }
 
 /// @nodoc
@@ -56,13 +63,23 @@ class _$ViewTaskStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? tabIndex = freezed,
+    Object? before = freezed,
+    Object? after = freezed,
+    Object? no = freezed,
   }) {
     return _then(_value.copyWith(
-      tabIndex: tabIndex == freezed
-          ? _value.tabIndex
-          : tabIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      before: before == freezed
+          ? _value.before
+          : before // ignore: cast_nullable_to_non_nullable
+              as List<Widget>,
+      after: after == freezed
+          ? _value.after
+          : after // ignore: cast_nullable_to_non_nullable
+              as List<Widget>,
+      no: no == freezed
+          ? _value.no
+          : no // ignore: cast_nullable_to_non_nullable
+              as List<Widget>,
     ));
   }
 }
@@ -74,7 +91,7 @@ abstract class _$ViewTaskStateCopyWith<$Res>
           _ViewTaskState value, $Res Function(_ViewTaskState) then) =
       __$ViewTaskStateCopyWithImpl<$Res>;
   @override
-  $Res call({int tabIndex});
+  $Res call({List<Widget> before, List<Widget> after, List<Widget> no});
 }
 
 /// @nodoc
@@ -90,13 +107,23 @@ class __$ViewTaskStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? tabIndex = freezed,
+    Object? before = freezed,
+    Object? after = freezed,
+    Object? no = freezed,
   }) {
     return _then(_ViewTaskState(
-      tabIndex: tabIndex == freezed
-          ? _value.tabIndex
-          : tabIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      before: before == freezed
+          ? _value.before
+          : before // ignore: cast_nullable_to_non_nullable
+              as List<Widget>,
+      after: after == freezed
+          ? _value.after
+          : after // ignore: cast_nullable_to_non_nullable
+              as List<Widget>,
+      no: no == freezed
+          ? _value.no
+          : no // ignore: cast_nullable_to_non_nullable
+              as List<Widget>,
     ));
   }
 }
@@ -104,15 +131,22 @@ class __$ViewTaskStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ViewTaskState implements _ViewTaskState {
-  const _$_ViewTaskState({this.tabIndex = 0});
+  const _$_ViewTaskState(
+      {this.before = const [], this.after = const [], this.no = const []});
 
   @JsonKey()
   @override
-  final int tabIndex;
+  final List<Widget> before;
+  @JsonKey()
+  @override
+  final List<Widget> after;
+  @JsonKey()
+  @override
+  final List<Widget> no;
 
   @override
   String toString() {
-    return 'ViewTaskState(tabIndex: $tabIndex)';
+    return 'ViewTaskState(before: $before, after: $after, no: $no)';
   }
 
   @override
@@ -120,12 +154,17 @@ class _$_ViewTaskState implements _ViewTaskState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ViewTaskState &&
-            const DeepCollectionEquality().equals(other.tabIndex, tabIndex));
+            const DeepCollectionEquality().equals(other.before, before) &&
+            const DeepCollectionEquality().equals(other.after, after) &&
+            const DeepCollectionEquality().equals(other.no, no));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(tabIndex));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(before),
+      const DeepCollectionEquality().hash(after),
+      const DeepCollectionEquality().hash(no));
 
   @JsonKey(ignore: true)
   @override
@@ -134,10 +173,17 @@ class _$_ViewTaskState implements _ViewTaskState {
 }
 
 abstract class _ViewTaskState implements ViewTaskState {
-  const factory _ViewTaskState({int tabIndex}) = _$_ViewTaskState;
+  const factory _ViewTaskState(
+      {List<Widget> before,
+      List<Widget> after,
+      List<Widget> no}) = _$_ViewTaskState;
 
   @override
-  int get tabIndex;
+  List<Widget> get before;
+  @override
+  List<Widget> get after;
+  @override
+  List<Widget> get no;
   @override
   @JsonKey(ignore: true)
   _$ViewTaskStateCopyWith<_ViewTaskState> get copyWith =>

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:task_manager/ui/add_task/add_task_page.dart';
 import 'package:task_manager/ui/components/appbar.dart';
 import 'package:task_manager/ui/top/top_view_model.dart';
 
@@ -16,7 +17,22 @@ class TopPage extends ConsumerWidget {
           appBar: CustomAppbar(title: '',),
           body: Column(
             children: [
-              data.page,
+              Stack(
+                children: [
+                  data.page,
+                  Positioned(
+                    bottom: 16,
+                    right: 16,
+                    child: FloatingActionButton(
+                      child: Icon(Icons.add, size: 28),
+                      onPressed: () => showDialog(
+                        context: context,
+                        builder: (_) => AddTaskPage(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
 
               BottomNavigationBar(
                 onTap: (index) => viewModel.onChangedPage(index),
@@ -24,17 +40,21 @@ class TopPage extends ConsumerWidget {
                 currentIndex: data.pageIndex,
                 items: [
                   BottomNavigationBarItem(
-                      label: "1日",
-                      icon: Icon(Icons.ac_unit, color: Colors.orange)),
+                    label: "1日",
+                    icon: Icon(Icons.ac_unit, color: Colors.orange),
+                  ),
                   BottomNavigationBarItem(
-                      label: "3日",
-                      icon: Icon(Icons.ac_unit, color: Colors.orange)),
+                    label: "3日",
+                    icon: Icon(Icons.ac_unit, color: Colors.orange),
+                  ),
                   BottomNavigationBarItem(
-                      label: "7日",
-                      icon: Icon(Icons.ac_unit, color: Colors.orange,)),
+                    label: "7日",
+                    icon: Icon(Icons.ac_unit, color: Colors.orange),
+                  ),
                   BottomNavigationBarItem(
-                      label: "一覧",
-                      icon: Icon(Icons.ac_unit, color: Colors.orange,)),
+                    label: "一覧",
+                    icon: Icon(Icons.ac_unit, color: Colors.orange),
+                  ),
                 ],
               ),
             ],

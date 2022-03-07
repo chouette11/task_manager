@@ -18,16 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$TopStateTearOff {
   const _$TopStateTearOff();
 
-  _TopState call(
-      {String appName = "",
-      String packageName = "",
-      String version = "",
-      String buildNumber = ""}) {
+  _TopState call({int pageIndex = 0, Widget page = const TaskLimitPage(1)}) {
     return _TopState(
-      appName: appName,
-      packageName: packageName,
-      version: version,
-      buildNumber: buildNumber,
+      pageIndex: pageIndex,
+      page: page,
     );
   }
 }
@@ -37,10 +31,8 @@ const $TopState = _$TopStateTearOff();
 
 /// @nodoc
 mixin _$TopState {
-  String get appName => throw _privateConstructorUsedError;
-  String get packageName => throw _privateConstructorUsedError;
-  String get version => throw _privateConstructorUsedError;
-  String get buildNumber => throw _privateConstructorUsedError;
+  int get pageIndex => throw _privateConstructorUsedError;
+  Widget get page => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TopStateCopyWith<TopState> get copyWith =>
@@ -51,8 +43,7 @@ mixin _$TopState {
 abstract class $TopStateCopyWith<$Res> {
   factory $TopStateCopyWith(TopState value, $Res Function(TopState) then) =
       _$TopStateCopyWithImpl<$Res>;
-  $Res call(
-      {String appName, String packageName, String version, String buildNumber});
+  $Res call({int pageIndex, Widget page});
 }
 
 /// @nodoc
@@ -65,28 +56,18 @@ class _$TopStateCopyWithImpl<$Res> implements $TopStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? appName = freezed,
-    Object? packageName = freezed,
-    Object? version = freezed,
-    Object? buildNumber = freezed,
+    Object? pageIndex = freezed,
+    Object? page = freezed,
   }) {
     return _then(_value.copyWith(
-      appName: appName == freezed
-          ? _value.appName
-          : appName // ignore: cast_nullable_to_non_nullable
-              as String,
-      packageName: packageName == freezed
-          ? _value.packageName
-          : packageName // ignore: cast_nullable_to_non_nullable
-              as String,
-      version: version == freezed
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as String,
-      buildNumber: buildNumber == freezed
-          ? _value.buildNumber
-          : buildNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+      pageIndex: pageIndex == freezed
+          ? _value.pageIndex
+          : pageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      page: page == freezed
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as Widget,
     ));
   }
 }
@@ -96,8 +77,7 @@ abstract class _$TopStateCopyWith<$Res> implements $TopStateCopyWith<$Res> {
   factory _$TopStateCopyWith(_TopState value, $Res Function(_TopState) then) =
       __$TopStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String appName, String packageName, String version, String buildNumber});
+  $Res call({int pageIndex, Widget page});
 }
 
 /// @nodoc
@@ -111,28 +91,18 @@ class __$TopStateCopyWithImpl<$Res> extends _$TopStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? appName = freezed,
-    Object? packageName = freezed,
-    Object? version = freezed,
-    Object? buildNumber = freezed,
+    Object? pageIndex = freezed,
+    Object? page = freezed,
   }) {
     return _then(_TopState(
-      appName: appName == freezed
-          ? _value.appName
-          : appName // ignore: cast_nullable_to_non_nullable
-              as String,
-      packageName: packageName == freezed
-          ? _value.packageName
-          : packageName // ignore: cast_nullable_to_non_nullable
-              as String,
-      version: version == freezed
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as String,
-      buildNumber: buildNumber == freezed
-          ? _value.buildNumber
-          : buildNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+      pageIndex: pageIndex == freezed
+          ? _value.pageIndex
+          : pageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      page: page == freezed
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as Widget,
     ));
   }
 }
@@ -140,28 +110,18 @@ class __$TopStateCopyWithImpl<$Res> extends _$TopStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_TopState implements _TopState {
-  const _$_TopState(
-      {this.appName = "",
-      this.packageName = "",
-      this.version = "",
-      this.buildNumber = ""});
+  const _$_TopState({this.pageIndex = 0, this.page = const TaskLimitPage(1)});
 
   @JsonKey()
   @override
-  final String appName;
+  final int pageIndex;
   @JsonKey()
   @override
-  final String packageName;
-  @JsonKey()
-  @override
-  final String version;
-  @JsonKey()
-  @override
-  final String buildNumber;
+  final Widget page;
 
   @override
   String toString() {
-    return 'TopState(appName: $appName, packageName: $packageName, version: $version, buildNumber: $buildNumber)';
+    return 'TopState(pageIndex: $pageIndex, page: $page)';
   }
 
   @override
@@ -169,21 +129,15 @@ class _$_TopState implements _TopState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _TopState &&
-            const DeepCollectionEquality().equals(other.appName, appName) &&
-            const DeepCollectionEquality()
-                .equals(other.packageName, packageName) &&
-            const DeepCollectionEquality().equals(other.version, version) &&
-            const DeepCollectionEquality()
-                .equals(other.buildNumber, buildNumber));
+            const DeepCollectionEquality().equals(other.pageIndex, pageIndex) &&
+            const DeepCollectionEquality().equals(other.page, page));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(appName),
-      const DeepCollectionEquality().hash(packageName),
-      const DeepCollectionEquality().hash(version),
-      const DeepCollectionEquality().hash(buildNumber));
+      const DeepCollectionEquality().hash(pageIndex),
+      const DeepCollectionEquality().hash(page));
 
   @JsonKey(ignore: true)
   @override
@@ -192,20 +146,12 @@ class _$_TopState implements _TopState {
 }
 
 abstract class _TopState implements TopState {
-  const factory _TopState(
-      {String appName,
-      String packageName,
-      String version,
-      String buildNumber}) = _$_TopState;
+  const factory _TopState({int pageIndex, Widget page}) = _$_TopState;
 
   @override
-  String get appName;
+  int get pageIndex;
   @override
-  String get packageName;
-  @override
-  String get version;
-  @override
-  String get buildNumber;
+  Widget get page;
   @override
   @JsonKey(ignore: true)
   _$TopStateCopyWith<_TopState> get copyWith =>

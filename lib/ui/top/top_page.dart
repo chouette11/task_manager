@@ -19,7 +19,7 @@ class TopPage extends ConsumerWidget {
               data.page,
 
               BottomNavigationBar(
-                onTap: (index) => viewModel.onPageChanged(index),
+                onTap: (index) => viewModel.onChangedPage(index),
                 fixedColor: Colors.orange,
                 currentIndex: data.pageIndex,
                 items: [

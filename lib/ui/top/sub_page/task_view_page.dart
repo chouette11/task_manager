@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/main.dart';
-import 'package:task_manager/ui/task_view/task_card.dart';
+import 'package:task_manager/ui/top/components/task_card.dart';
 
-class TaskView extends ConsumerStatefulWidget {
-  TaskView({Key? key}) : super(key: key);
+class TaskViewPage extends ConsumerStatefulWidget {
+  TaskViewPage({Key? key}) : super(key: key);
 
   @override
   TaskViewState createState() => TaskViewState();
 }
 
-class TaskViewState extends ConsumerState<TaskView> {
+class TaskViewState extends ConsumerState<TaskViewPage> {
   @override
   Widget build(BuildContext context) {
     final tasks = ref.watch(itemsStreamProvider);

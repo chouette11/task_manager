@@ -13,28 +13,12 @@ class TopPage extends ConsumerWidget {
     final viewModel = ref.watch(topViewModelProvider.notifier);
     return state.when(
       data: (data) {
-        return Scaffold(
-          appBar: CustomAppbar(title: '',),
-          body: Column(
-            children: [
-              Stack(
-                children: [
-                  data.page,
-                  Positioned(
-                    bottom: 16,
-                    right: 16,
-                    child: FloatingActionButton(
-                      child: Icon(Icons.add, size: 28),
-                      onPressed: () => showDialog(
-                        context: context,
-                        builder: (_) => AddTaskPage(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              BottomNavigationBar(
+        return MaterialApp(
+          home: DefaultTabController(
+            length: 3,
+            child: Scaffold(
+              appBar: CustomAppbar(title: "aa"),
+              bottomNavigationBar: BottomNavigationBar(
                 onTap: (index) => viewModel.onChangedPage(index),
                 fixedColor: Colors.orange,
                 currentIndex: data.pageIndex,
@@ -57,7 +41,23 @@ class TopPage extends ConsumerWidget {
                   ),
                 ],
               ),
-            ],
+              body: Stack(
+                children: [
+                  data.page,
+                  Positioned(
+                    bottom: 16,
+                    right: 16,
+                    child: FloatingActionButton(
+                      child: Icon(Icons.add, size: 28),
+                      onPressed: () => showDialog(
+                        context: context,
+                        builder: (_) => AddTaskPage(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         );
       },

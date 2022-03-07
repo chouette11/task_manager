@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/ui/top/sub_page/task_limit_page.dart';
-import 'package:task_manager/ui/top/sub_page/task_view_page.dart';
 import 'package:task_manager/ui/top/top_state.dart';
+import 'package:task_manager/ui/view_task/view_task_page.dart';
 
 final topViewModelProvider =
     StateNotifierProvider.autoDispose<TopViewModel, AsyncValue<TopState>>(
@@ -31,8 +31,7 @@ class TopViewModel extends StateNotifier<AsyncValue<TopState>> {
     if (index < 3) {
       state = AsyncValue.data(state.value!.copyWith(page: TaskLimitPage((index + 1) * index + 1)));
     } else {
-      state = AsyncValue.data(state.value!.copyWith(page: TaskViewPage()));
+      state = AsyncValue.data(state.value!.copyWith(page: ViewTaskPage()));
     }
-
   }
 }

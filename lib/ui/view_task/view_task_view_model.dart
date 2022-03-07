@@ -1,12 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:task_manager/ui/xxx/xxx_state.dart';
+import 'package:task_manager/ui/view_task/view_task_state.dart';
 
 final viewTaskViewModelProvider =
-    StateNotifierProvider.autoDispose<ViewTaskViewModel, AsyncValue<XXXState>>(
-  (ref) => ViewTaskViewModel(ref: ref),
+StateNotifierProvider.autoDispose<ViewTaskViewModel, AsyncValue<ViewTaskState>>(
+      (ref) => ViewTaskViewModel(ref: ref),
 );
 
-class ViewTaskViewModel extends StateNotifier<AsyncValue<XXXState>> {
+class ViewTaskViewModel extends StateNotifier<AsyncValue<ViewTaskState>> {
   final AutoDisposeStateNotifierProviderRef _ref;
   ViewTaskViewModel({required AutoDisposeStateNotifierProviderRef ref})
       : _ref = ref,

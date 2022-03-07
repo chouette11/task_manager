@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:task_manager/ui/add_task/add_task_view_model.dart';
+import 'package:task_manager/ui/add_task/components/check.dart';
 import 'package:task_manager/ui/add_task/components/date_add_button.dart';
 import 'package:task_manager/ui/add_task/components/date_text_box.dart';
 import 'package:task_manager/ui/components/form/text_field.dart';
@@ -152,9 +154,21 @@ class _AddTaskState extends ConsumerState<AddTaskPage> {
                         onChanged: viewModel.onChecked,
                       ),
 
-                      ElevatedButton(
-                        onPressed: () => viewModel.onAddTask(context),
-                        child: Text("OK"),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () => viewModel.onAddTask(context),
+                            child: Text("OK"),
+                          ),
+
+                          SizedBox(width: 16),
+
+                          RaisedButton(
+                            onPressed: () => context.push('/'),
+                            child: Text("キャンセル"),
+                          )
+                        ],
                       ),
                     ],
                   ),

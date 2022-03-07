@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:task_manager/data/repository/firestore/firestore_tasks_stream.dart';
 import 'package:task_manager/main.dart';
 
 import '../components/now_task_card.dart';
@@ -17,7 +18,7 @@ class TaskLimitPage extends ConsumerStatefulWidget {
 class OneDayTaskState extends ConsumerState<TaskLimitPage> {
   @override
   Widget build(BuildContext context) {
-    final tasks = ref.watch(itemsStreamProvider);
+    final tasks = ref.watch(tasksStreamProvider);
     final check = ref.watch(checkStateProvider.notifier);
     var now = DateTime.now();
 

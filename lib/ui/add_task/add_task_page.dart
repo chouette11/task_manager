@@ -131,12 +131,12 @@ class _AddTaskState extends ConsumerState<AddTaskPage> {
                                 onPressed: () => viewModel.onAddDate(0, 0, 0, 0, 5),
                               ),
                               AddDateButton(
-                                title: "+20",
-                                onPressed: () => viewModel.onAddDate(0, 0, 0, 0, 20),
+                                title: ":00",
+                                onPressed: () => viewModel.onChangedMinute("0"),
                               ),
                               AddDateButton(
-                                title: "+30",
-                                onPressed: () => viewModel.onAddDate(0, 0, 0, 0, 30),
+                                title: ":30",
+                                onPressed: () => viewModel.onChangedMinute("30"),
                               ),
                             ],
                           ),

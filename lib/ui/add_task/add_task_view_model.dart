@@ -63,7 +63,31 @@ class AddTaskViewModel extends StateNotifier<AsyncValue<AddTaskState>> {
       final minute = state.value!.minute - 60;
       state = AsyncValue.data(state.value!.copyWith(minute: minute));
     }
+  }
 
+  /// 日付の変更　onChanged
+  Future<void> onChangedDate(BuildContext context) async {
+    final date = await showDatePicker(
+        context: context,
+        initialDate: DateTime(
+          state.value!.year,
+          state.value!.month,
+          state.value!.day,
+        ),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2040),
+    );
+
+    state = AsyncValue.data(
+      AddTaskState(
+        task: state.value!.task,
+        year: date!.year,
+        month: date.month,
+        day: date.day,
+        hour: date.hour,
+        minute: date.minute,
+      ),
+    );
   }
 
   /// 年 onChanged

@@ -26,7 +26,7 @@ class AddTaskViewModel extends StateNotifier<AsyncValue<AddTaskState>> {
       AddTaskState(
         task: "task",
         year: now.year,
-        month: now.month - 1,
+        month: now.month,
         day: now.day,
         hour: now.hour,
         minute: now.minute,
@@ -34,7 +34,7 @@ class AddTaskViewModel extends StateNotifier<AsyncValue<AddTaskState>> {
     );
   }
 
-  /// onAddDate
+  /// 日時の追加 onAddDate
   void onAddDate(int year, int month, int day, int hour, int minute) {
     state = AsyncValue.data(
       AddTaskState(

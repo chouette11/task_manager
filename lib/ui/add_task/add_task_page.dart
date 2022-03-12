@@ -16,12 +16,6 @@ class AddTaskPage extends ConsumerStatefulWidget {
 }
 
 class _AddTaskState extends ConsumerState<AddTaskPage> {
-  final TextEditingController _yearController = TextEditingController();
-  final TextEditingController _monthController = TextEditingController();
-  final TextEditingController _dayController = TextEditingController();
-  final TextEditingController _hourController = TextEditingController();
-  final TextEditingController _minuteController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(addTaskViewModelProvider);
@@ -29,11 +23,36 @@ class _AddTaskState extends ConsumerState<AddTaskPage> {
 
     return state.when(
       data: (data) {
-        _yearController.text = data.year.toString();
-        _monthController.text = data.month.toString();
-        _dayController.text = data.day.toString();
-        _hourController.text = data.hour.toString();
-        _minuteController.text = data.minute.toString();
+        final _yearController = TextEditingController.fromValue(
+          TextEditingValue(
+            text: data.year.toString(),
+            selection: TextSelection.collapsed(offset: data.year.toString().length),
+          ),
+        );
+        final _monthController = TextEditingController.fromValue(
+          TextEditingValue(
+            text: data.month.toString(),
+            selection: TextSelection.collapsed(offset: data.month.toString().length),
+          ),
+        );
+        final _dayController = TextEditingController.fromValue(
+          TextEditingValue(
+            text: data.day.toString(),
+            selection: TextSelection.collapsed(offset: data.day.toString().length),
+          ),
+        );
+        final _hourController = TextEditingController.fromValue(
+          TextEditingValue(
+            text: data.hour.toString(),
+            selection: TextSelection.collapsed(offset: data.hour.toString().length),
+          ),
+        );
+        final _minuteController = TextEditingController.fromValue(
+          TextEditingValue(
+            text: data.minute.toString(),
+            selection: TextSelection.collapsed(offset: data.minute.toString().length),
+          ),
+        );
 
         return Scaffold(
           backgroundColor: Colors.transparent,

@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/calendar/v3.dart';
-import 'package:http/http.dart';
-import 'package:http/io_client.dart';
+import 'package:task_manager/ui/components/calendar.dart';
 
 Future<List<Map<String, dynamic>>> getTaskFromCalendar(GoogleSignIn googleSignIn) async {
   try {
@@ -49,18 +47,4 @@ Future<List<Map<String, dynamic>>> getTaskFromCalendar(GoogleSignIn googleSignIn
     List<Map<String, dynamic>> tasksData = [];
     return tasksData;
   }
-}
-
-class GoogleHttpClient extends IOClient {
-  Map<String, String> _headers;
-
-  GoogleHttpClient(this._headers) : super();
-
-  @override
-  Future<IOStreamedResponse> send(BaseRequest request) =>
-      super.send(request..headers.addAll(_headers));
-
-  @override
-  Future<Response> head(dynamic url, {Map<String, String>? headers}) =>
-      super.head(url, headers: headers!..addAll(_headers));
 }

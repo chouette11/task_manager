@@ -1,22 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:task_manager/types/task.dart';
 
-Future setTasks(List<Map<String, dynamic>> taskData) async {
-  try {
-    var now = DateTime.now();
-    CollectionReference tasks = FirebaseFirestore.instance.collection('tasks');
-    tasks.doc("フクダ")
-        .set(<String, dynamic>{
-      'pastTime': now,
-      'taskData': taskData,
-    },
-      SetOptions(merge: false),
-    );
-  } catch (e) {
-    print(e);
-  }
-}
-
 Future onCheck(int id, DateTime limit, bool noLimit, String task) async {
   try {
     CollectionReference tasks = FirebaseFirestore.instance.collection('tasks');

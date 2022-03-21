@@ -1,56 +1,53 @@
+import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/calendar/v3.dart';
 import 'package:http/http.dart';
 import 'package:http/io_client.dart';
 
-import 'package:task_manager/types/task.dart';
-import 'package:task_manager/ui/components/firestore.dart';
-
-Future<void> setCalendar(GoogleSignIn googleSignIn) async {
+Future<List<Map<String, dynamic>>> getTaskFromCalendar(GoogleSignIn googleSignIn) async {
   try {
     GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
-    print('---------- サインイン>');
-    print(googleSignInAccount.toString());
 
     // リクエストから、認証情報を取得
     var client = GoogleHttpClient(await googleSignInAccount!.authHeaders);
     var calendar = CalendarApi(client);
 
     String calendarId = "primary";
-    var now = DateTime.now();
-    var a = DateTime(2022, 1, 25, 12, 12);
+    var twoWeek = DateTime.now();
+    twoWeek.add(Duration(days: 14));
 
-    final events = await calendar.events.list(calendarId, singleEvents: true, timeMax: a); // googleカレンダーから取得
-    Task? task = await getTaskFromFirestore('フクダ'); // Firestoreから取得
+    final events = await calendar.events.list(calendarId, singleEvents: true, timeMax: twoWeek); // googleカレンダーから取得
 
-    int id = 0;
-    List<Map<String, dynamic>> tasksData = task!.taskData;
+    List<Map<String, dynamic>> tasksData = [];
     events.items!.forEach((element) {
-      print(element.end!.toJson());
       // if (element.created!.isAfter(task.pastTime)) {
         if (element.summary != null) { // 以前にFirestoreが読み込まれた時間とイベントが作成された時間を比較して追加
           if (element.end!.date != null) {
             DateTime? date = element.end!.date;
             date!.add(Duration(days: -1));
             tasksData.add(<String, dynamic>{
-              'id': id,
+              'id': 10,
               'task': element.summary! + " " + date.month.toString() + "月" + date.day.toString() + "日",
+              'noLimit': false,
               'limit': date,
             });
           } else {
             tasksData.add(<String, dynamic>{
-              'id': id,
+              'id': 10,
               'task': element.summary!,
+              'noLimit': false,
               'limit': element.end!.dateTime,
             });
           }
-          id++;
         }
       // }
     });
-    setTasks(tasksData);
+
+    return tasksData;
   } catch (e) {
     print('エラー $e');
+    List<Map<String, dynamic>> tasksData = [];
+    return tasksData;
   }
 }
 

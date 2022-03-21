@@ -7,6 +7,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:go_router/go_router.dart';
 import 'package:task_manager/ui/add_task/add_task_page.dart';
 import 'package:task_manager/ui/login/login_page.dart';
+import 'package:task_manager/ui/setting/setting_page.dart';
 import 'package:task_manager/ui/top/top_page.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -90,6 +91,10 @@ class _MyAppState extends State<MyApp> {
           path: '/add_task',
           builder: (context, state) => const AddTaskPage(),
         ),
+        GoRoute(
+          path: '/setting',
+          builder: (context, state) => const SettingPage(),
+        )
       ],
     );
 

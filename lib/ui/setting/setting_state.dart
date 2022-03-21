@@ -6,8 +6,5 @@ part 'setting_state.freezed.dart';
 class SettingState with _$SettingState {
   const factory SettingState({
     @Default("") String appName,
-    @Default("") String packageName,
-    @Default("") String version,
-    @Default("") String buildNumber,
   }) = _SettingState;
 }

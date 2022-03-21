@@ -18,16 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SettingStateTearOff {
   const _$SettingStateTearOff();
 
-  _SettingState call(
-      {String appName = "",
-      String packageName = "",
-      String version = "",
-      String buildNumber = ""}) {
+  _SettingState call({String appName = ""}) {
     return _SettingState(
       appName: appName,
-      packageName: packageName,
-      version: version,
-      buildNumber: buildNumber,
     );
   }
 }
@@ -38,9 +31,6 @@ const $SettingState = _$SettingStateTearOff();
 /// @nodoc
 mixin _$SettingState {
   String get appName => throw _privateConstructorUsedError;
-  String get packageName => throw _privateConstructorUsedError;
-  String get version => throw _privateConstructorUsedError;
-  String get buildNumber => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SettingStateCopyWith<SettingState> get copyWith =>
@@ -52,8 +42,7 @@ abstract class $SettingStateCopyWith<$Res> {
   factory $SettingStateCopyWith(
           SettingState value, $Res Function(SettingState) then) =
       _$SettingStateCopyWithImpl<$Res>;
-  $Res call(
-      {String appName, String packageName, String version, String buildNumber});
+  $Res call({String appName});
 }
 
 /// @nodoc
@@ -67,26 +56,11 @@ class _$SettingStateCopyWithImpl<$Res> implements $SettingStateCopyWith<$Res> {
   @override
   $Res call({
     Object? appName = freezed,
-    Object? packageName = freezed,
-    Object? version = freezed,
-    Object? buildNumber = freezed,
   }) {
     return _then(_value.copyWith(
       appName: appName == freezed
           ? _value.appName
           : appName // ignore: cast_nullable_to_non_nullable
-              as String,
-      packageName: packageName == freezed
-          ? _value.packageName
-          : packageName // ignore: cast_nullable_to_non_nullable
-              as String,
-      version: version == freezed
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as String,
-      buildNumber: buildNumber == freezed
-          ? _value.buildNumber
-          : buildNumber // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -99,8 +73,7 @@ abstract class _$SettingStateCopyWith<$Res>
           _SettingState value, $Res Function(_SettingState) then) =
       __$SettingStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String appName, String packageName, String version, String buildNumber});
+  $Res call({String appName});
 }
 
 /// @nodoc
@@ -116,26 +89,11 @@ class __$SettingStateCopyWithImpl<$Res> extends _$SettingStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? appName = freezed,
-    Object? packageName = freezed,
-    Object? version = freezed,
-    Object? buildNumber = freezed,
   }) {
     return _then(_SettingState(
       appName: appName == freezed
           ? _value.appName
           : appName // ignore: cast_nullable_to_non_nullable
-              as String,
-      packageName: packageName == freezed
-          ? _value.packageName
-          : packageName // ignore: cast_nullable_to_non_nullable
-              as String,
-      version: version == freezed
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as String,
-      buildNumber: buildNumber == freezed
-          ? _value.buildNumber
-          : buildNumber // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -144,28 +102,15 @@ class __$SettingStateCopyWithImpl<$Res> extends _$SettingStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SettingState implements _SettingState {
-  const _$_SettingState(
-      {this.appName = "",
-      this.packageName = "",
-      this.version = "",
-      this.buildNumber = ""});
+  const _$_SettingState({this.appName = ""});
 
   @JsonKey()
   @override
   final String appName;
-  @JsonKey()
-  @override
-  final String packageName;
-  @JsonKey()
-  @override
-  final String version;
-  @JsonKey()
-  @override
-  final String buildNumber;
 
   @override
   String toString() {
-    return 'SettingState(appName: $appName, packageName: $packageName, version: $version, buildNumber: $buildNumber)';
+    return 'SettingState(appName: $appName)';
   }
 
   @override
@@ -173,21 +118,12 @@ class _$_SettingState implements _SettingState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SettingState &&
-            const DeepCollectionEquality().equals(other.appName, appName) &&
-            const DeepCollectionEquality()
-                .equals(other.packageName, packageName) &&
-            const DeepCollectionEquality().equals(other.version, version) &&
-            const DeepCollectionEquality()
-                .equals(other.buildNumber, buildNumber));
+            const DeepCollectionEquality().equals(other.appName, appName));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(appName),
-      const DeepCollectionEquality().hash(packageName),
-      const DeepCollectionEquality().hash(version),
-      const DeepCollectionEquality().hash(buildNumber));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(appName));
 
   @JsonKey(ignore: true)
   @override
@@ -196,20 +132,10 @@ class _$_SettingState implements _SettingState {
 }
 
 abstract class _SettingState implements SettingState {
-  const factory _SettingState(
-      {String appName,
-      String packageName,
-      String version,
-      String buildNumber}) = _$_SettingState;
+  const factory _SettingState({String appName}) = _$_SettingState;
 
   @override
   String get appName;
-  @override
-  String get packageName;
-  @override
-  String get version;
-  @override
-  String get buildNumber;
   @override
   @JsonKey(ignore: true)
   _$SettingStateCopyWith<_SettingState> get copyWith =>

@@ -16,6 +16,10 @@ class SettingViewModel extends StateNotifier<AsyncValue<SettingState>> {
 
   /// 通信、初期化処理
   Future<void> load() async {
-
+    state = AsyncValue.data(
+      SettingState(
+        appName: "aa"
+      ),
+    );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/ui/add_task/add_task_page.dart';
 import 'package:task_manager/ui/components/appbar.dart';
+import 'package:task_manager/ui/components/drawer/drawer.dart';
 import 'package:task_manager/ui/top/top_view_model.dart';
 
 class TopPage extends ConsumerWidget {
@@ -41,6 +42,7 @@ class TopPage extends ConsumerWidget {
                   ),
                 ],
               ),
+              drawer: CustomDrawer(),
               body: Stack(
                 children: [
                   data.page,

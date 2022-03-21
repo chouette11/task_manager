@@ -10,11 +10,11 @@ class DefaultLayout<T> extends StatelessWidget {
     required this.builder,
     required this.state,
     this.endDrawer,
-    this.appBarBuilder,
+    this.appBar,
   }) : super(key: key);
   final Color backgroundColor;
   final Widget Function(T) builder;
-  final PreferredSizeWidget Function(T)? appBarBuilder;
+  final PreferredSizeWidget? appBar;
   final AsyncValue<T> state;
   final Widget? endDrawer;
 
@@ -23,7 +23,7 @@ class DefaultLayout<T> extends StatelessWidget {
     return state.when(
       data: (data) {
         return Scaffold(
-          appBar: appBarBuilder != null ? appBarBuilder!(data) : null,
+          appBar: appBar != null ? appBar : null,
           backgroundColor: backgroundColor,
           body: SafeArea(
             child: GestureDetector(
@@ -36,7 +36,7 @@ class DefaultLayout<T> extends StatelessWidget {
               child: builder(data),
             ),
           ),
-          endDrawer: endDrawer,
+          drawer: endDrawer,
         );
       },
       error: (e, stackTrace) => TopPage(),

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:go_router/go_router.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:task_manager/ui/add_task/add_task_page.dart';
 import 'package:task_manager/ui/login/login_page.dart';
 import 'package:task_manager/ui/setting/setting_page.dart';
@@ -21,6 +22,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  HomeWidget.setAppGroupId("group.com.example.task_manager");
   runApp(ProviderScope(child: MyApp()));
 }
 

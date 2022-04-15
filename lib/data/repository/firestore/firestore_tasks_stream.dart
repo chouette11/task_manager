@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:task_manager/types/task.dart';
 
-final tasksStreamProvider = StreamProvider<Task>((ref) {
+final tasksStreamProvider = StreamProvider<List<TaskData>>((ref) async* {
   final googleUser = GoogleSignIn(scopes: [
     'email',
     'https://www.googleapis.com/auth/contacts.readonly',
@@ -11,7 +12,8 @@ final tasksStreamProvider = StreamProvider<Task>((ref) {
   ]);
   // setCalendar(googleUser);
   final collection = FirebaseFirestore.instance.collection('tasks');
-  final stream = collection.doc('フクダ').snapshots();
+  final token = await FirebaseMessaging.instance.getToken();
+  final stream = collection.where('id', isEqualTo: token!).limit(2).snapshots();
 
-  return stream.map((event) => Task(event));
+  yield* stream.map((event) => event.docs.map((e) => TaskData(e)).toList());
 });

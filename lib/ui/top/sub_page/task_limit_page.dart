@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/data/repository/firestore/firestore_tasks_stream.dart';
 import 'package:task_manager/main.dart';
+import 'package:task_manager/types/task.dart';
 
 import '../components/now_task_card.dart';
 
@@ -38,16 +39,16 @@ class OneDayTaskState extends ConsumerState<TaskLimitPage> {
             ),
             tasks.when(
               data: (items) {
-                List<Map<String, dynamic>> todayTasks = [];
-                items.taskData.forEach((element) {
-                  Duration diff = element['limit'].difference(now);
+                List<TaskData> todayTasks = [];
+                items.forEach((element) {
+                  Duration diff = element.limit.difference(now);
                   int days = diff.inDays;
                   int hours = diff.inHours - (days * 24);
                   int minutes = diff.inMinutes - (days * 24 * 60) - (hours * 60);
                   print(days);
                   if (days >= 0 && days < widget.index && hours >= 0 && minutes >= 0) {
                     todayTasks.add(element);
-                  } else if (element['noLimit'] == true && check.state == true) {
+                  } else if (element.isLimit == true && check.state == true) {
                     todayTasks.add(element);
                   }
                 });

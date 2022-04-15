@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/types/task.dart';
 import 'package:task_manager/ui/components/firestore.dart';
 
 class NowTaskCard extends StatelessWidget {
   const NowTaskCard({Key? key, required this.taskData}) : super(key: key);
-  final Map<String, dynamic> taskData;
+  final TaskData taskData;
 
   @override
   Widget build(BuildContext context) {
     String limit = "";
-    if (taskData['noLimit'] == false) {
+    if (taskData.isLimit == false) {
       var now = DateTime.now();
-      Duration diff = taskData['limit'].difference(now);
+      Duration diff = taskData.limit.difference(now);
       int days = diff.inDays;
       int hours = diff.inHours - (days * 24);
       int minutes = diff.inMinutes - (days * 24 * 60) - (hours * 60);
@@ -24,19 +25,15 @@ class NowTaskCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  taskData['task'],
+                  taskData.title,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 32,
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => onCheck(taskData['id'], taskData['limit'], taskData['noLimit'], taskData['task']),
+                  onTap: () => onCheck(taskData,),
                   child: Icon(Icons.check_circle_outline),
-                ),
-                GestureDetector(
-                  onTap: () => onAdd(taskData['id'], taskData['limit'], taskData['task']),
-                  child: Icon(Icons.add),
                 ),
               ],
             ),

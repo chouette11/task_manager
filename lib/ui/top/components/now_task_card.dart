@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/types/task.dart';
-import 'package:task_manager/ui/components/firestore.dart';
+import '../../../data/repository/firestore/firestore_repository.impl.dart';
 
-class NowTaskCard extends StatelessWidget {
+class NowTaskCard extends ConsumerWidget {
   const NowTaskCard({Key? key, required this.taskData}) : super(key: key);
   final TaskData taskData;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final firestoreRepository = ref.read(firestoreRepositoryProvider);
     String limit = "";
     if (taskData.isLimit == false) {
       var now = DateTime.now();
@@ -32,7 +34,7 @@ class NowTaskCard extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => onCheck(taskData,),
+                  onTap: () => firestoreRepository.onCheck(taskData: taskData),
                   child: Icon(Icons.check_circle_outline),
                 ),
               ],

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/types/task.dart';
-import 'package:task_manager/ui/components/firestore.dart';
 
-class TaskCard extends StatelessWidget {
+import '../../../data/repository/firestore/firestore_repository.impl.dart';
+
+class TaskCard extends ConsumerWidget {
   const TaskCard({Key? key, required this.taskData}) : super(key: key);
   final TaskData taskData;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final firestoreRepository = ref.read(firestoreRepositoryProvider);
     var now = DateTime.now();
     Duration diff = taskData.limit.difference(now);
     int days = diff.inDays;
@@ -29,7 +32,7 @@ class TaskCard extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () => onCheck(taskData),
+                  onPressed: () => firestoreRepository.onCheck(taskData: taskData),
                   icon: Icon(Icons.check_circle_outline),
                 ),
               ],

@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -152,11 +153,12 @@ class AddTaskViewModel extends StateNotifier<AsyncValue<AddTaskState>> {
   Future<void> onAddTask(BuildContext context) async {
     final value = state.value!;
     final limit = DateTime(value.year, value.month, value.day, value.hour, value.minute);
+    final token = await FirebaseMessaging.instance.getToken();
     final Map<String, dynamic> taskData = {
-      'id': 104,
+      'id': token,
       'limit': limit,
-      'noLimit': value.isChecked,
-      'task': value.task,
+      'isLimit': value.isChecked,
+      'title': value.task,
     };
     await firestoreRepository.addTask(task: taskData);
     context.push('/');

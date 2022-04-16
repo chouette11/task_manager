@@ -26,18 +26,18 @@ class ViewTaskPage extends ConsumerWidget {
             height: MediaQuery.of(context).size.height - 136,
             child: tasks.when(
               data: (data) {
-                final taskData = data.taskData;
+                final taskData = data;
                 List<Widget> before = [];
                 List<Widget> after = [];
                 List<Widget> no = [];
 
                 taskData.forEach((element) {
                   var now = DateTime.now();
-                  if (element['noLimit'] == true) {
+                  if (element.isLimit == true) {
                     no.add(TaskCard(taskData: element));
-                  } else if (now.isAfter(element['limit'])) {
+                  } else if (now.isAfter(element.limit)) {
                     after.add(TaskCard(taskData: element));
-                  } else if (now.isBefore(element['limit'])) {
+                  } else if (now.isBefore(element.limit)) {
                     before.add(TaskCard(taskData: element));
                   }
                 });

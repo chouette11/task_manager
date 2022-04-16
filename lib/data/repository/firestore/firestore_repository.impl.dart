@@ -6,6 +6,7 @@ import 'package:task_manager/data/model/user_document/user_document.dart';
 import 'package:task_manager/data/repository/auth/auth_repository.impl.dart';
 import 'package:task_manager/data/repository/firestore/firestore_provider.dart';
 import 'package:task_manager/data/repository/firestore/firestore_repository.dart';
+import 'package:task_manager/types/task.dart';
 
 final firestoreRepositoryProvider =
 Provider<FirestoreRepository>((ref) => FirestoreRepositoryImpl(ref.read));
@@ -66,11 +67,9 @@ class FirestoreRepositoryImpl implements FirestoreRepository {
   }) {
     return Result.guardFuture(() async {
       final currentUser = _authRepository.currentUser;
+      await _tasksCollection.add(task);
       if (currentUser != null) {
-        await _tasksCollection.doc("フクダ").update({
-            'taskData': FieldValue.arrayUnion([task]),
-          }
-        );
+
       } else {
         throw FirebaseAuthException(
           code: 'auth/custom-error',
@@ -80,4 +79,18 @@ class FirestoreRepositoryImpl implements FirestoreRepository {
     });
   }
 
+  @override
+  Future<Result<void>> onCheck({
+    required TaskData taskData,
+  }) {
+    return Result.guardFuture(() async {
+      try {
+        CollectionReference doneTasks = FirebaseFirestore.instance.collection('doneTasks');
+        _tasksCollection.doc(taskData.docId).delete();
+        doneTasks.add(taskData);
+      } catch(e) {
+        print(e);
+      }
+    });
+  }
 }

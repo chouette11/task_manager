@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/ui/components/firestore.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:task_manager/types/task.dart';
 
-class TaskCard extends StatelessWidget {
+import '../../../data/repository/firestore/firestore_repository.impl.dart';
+
+class TaskCard extends ConsumerWidget {
   const TaskCard({Key? key, required this.taskData}) : super(key: key);
-  final Map<String, dynamic> taskData;
+  final TaskData taskData;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final firestoreRepository = ref.read(firestoreRepositoryProvider);
     var now = DateTime.now();
-    Duration diff = taskData['limit'].difference(now);
+    Duration diff = taskData.limit.difference(now);
     int days = diff.inDays;
     int hours = diff.inHours - (days * 24);
     int minutes = diff.inMinutes - (days * 24 * 60) - (hours * 60);
@@ -21,19 +25,14 @@ class TaskCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  taskData['task'],
+                  taskData.title,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),
                 ),
                 IconButton(
-                  onPressed: () => onCheck(
-                    taskData['id'],
-                    taskData['limit'],
-                    taskData['noLimit'],
-                    taskData['task'],
-                  ),
+                  onPressed: () => firestoreRepository.onCheck(taskData: taskData),
                   icon: Icon(Icons.check_circle_outline),
                 ),
               ],
@@ -44,7 +43,7 @@ class TaskCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                taskData['noLimit'] == false ?
+                taskData.isLimit == false ?
                 Text(
                   "残り時間 $limit",
                   style: TextStyle(

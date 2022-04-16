@@ -1,6 +1,6 @@
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/calendar/v3.dart';
-import 'package:task_manager/ui/components/calendar.dart';
+import 'package:task_manager/data/api/client.dart';
 
 Future<List<Map<String, dynamic>>> getTaskFromCalendar(GoogleSignIn googleSignIn) async {
   try {

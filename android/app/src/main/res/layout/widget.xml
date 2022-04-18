@@ -34,32 +34,25 @@
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-        </FrameLayout>
+
         <TextView
-            android:id="@+id/schedule_1"
+            android:id="@+id/schedule1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="14sp"
             android:textColor="#fff"
             android:background="@drawable/schedule_background"
             android:paddingHorizontal="15dp"
             android:paddingVertical="10dp"
-            tools:text="スケジュール" />
+            android:text="TextView" />
+
         <TextView
-            android:id="@+id/schedule_2"
+            android:id="@+id/schedule2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="14sp"
-            android:textColor="#fff"
             android:background="@drawable/schedule_background"
             android:paddingHorizontal="15dp"
             android:paddingVertical="10dp"
-            tools:text="スケジュール" />
+            android:text="TextView"
+            android:textColor="#fff" />
     </LinearLayout>
 </LinearLayout>

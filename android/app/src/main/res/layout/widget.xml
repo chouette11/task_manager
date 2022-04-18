@@ -9,26 +9,7 @@
     android:padding="20dp"
     android:id="@+id/widget_container">
 
-    <TextView
-        android:id="@+id/widget_week"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:textColor="#fff"
-        tools:text="月曜日" />
-
-    <TextView
-        android:id="@+id/widget_day"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textSize="25sp"
-        android:textColor="#fff"
-        tools:text="01" />
-
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/schedules"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

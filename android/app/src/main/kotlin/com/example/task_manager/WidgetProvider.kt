@@ -1,8 +1,10 @@
 package com.example.task_manager
 
+import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
 import android.widget.RemoteViews
 import es.antonborri.home_widget.HomeWidgetProvider
 import java.util.Calendar
@@ -11,15 +13,20 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.firestore.ktx.firestore
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 import com.google.android.gms.common.util.CollectionUtils.listOf
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import java.time.LocalDateTime
 
 class Schedule(val name: String)
 
 class WidgetProvider : HomeWidgetProvider() {
+    @SuppressLint("NewApi")
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray, widgetData: SharedPreferences) {
         val calendar = Calendar.getInstance()
+        val localDateTime = LocalDateTime.now()
         val weekName = arrayOf("日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日")
         val week: String = weekName[calendar.get(Calendar.DAY_OF_WEEK) - 1]
         val year: String = calendar.get(Calendar.YEAR).toString()

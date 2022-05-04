@@ -46,7 +46,9 @@ class WidgetProvider : HomeWidgetProvider() {
             val token = task.result
             val views = RemoteViews(context.packageName, R.layout.widget)
             Firebase.firestore.collection("tasks")
+                    .whereEqualTo("isLimit", true)
                     .whereIn("id", listOf(uid, token))
+                    .orderBy("limit")
                     .get()
                     .addOnSuccessListener { result ->
                         Log.d("Log", "数：${result.documents.size}")

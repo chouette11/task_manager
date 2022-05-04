@@ -23,8 +23,8 @@ class WidgetProvider : HomeWidgetProvider() {
         val weekName = arrayOf("日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日")
         val week: String = weekName[calendar.get(Calendar.DAY_OF_WEEK) - 1]
         val year: String = calendar.get(Calendar.YEAR).toString()
-        val month: String = (calendar.get(Calendar.MONTH) + 1).toString().padStart(2, '0')
-        val day: String = calendar.get(Calendar.DATE).toString().padStart(2, '0')
+//        val month: String = (calendar.get(Calendar.MONTH) + 1).toString().padStart(2, '0')
+//        val day: String = calendar.get(Calendar.DATE).toString().padStart(2, '0')
         val user = Firebase.auth.currentUser
         var uid = ""
         Log.w("Log", "スタート")
@@ -45,11 +45,36 @@ class WidgetProvider : HomeWidgetProvider() {
                         Log.d("Log", "数：${result.documents.size}")
                         views.setViewVisibility(R.id.schedule1, View.INVISIBLE)
                         views.setViewVisibility(R.id.schedule2, View.INVISIBLE)
+                        views.setViewVisibility(R.id.schedule3, View.INVISIBLE)
+                        views.setViewVisibility(R.id.schedule4, View.INVISIBLE)
+                        views.setViewVisibility(R.id.schedule5, View.INVISIBLE)
+                        views.setViewVisibility(R.id.schedule6, View.INVISIBLE)
 
-                        for (i in  0..result.documents.size) {
+                        if (!result.documents.isEmpty()) {
                             views.setViewVisibility(R.id.schedule1, View.VISIBLE)
-                            views.setTextViewText(R.id.schedule1, "aa")
+                            views.setTextViewText(R.id.schedule1, result.documents[0].get("title").toString())
                         }
+                        if (result.documents.size > 1) {
+                            views.setViewVisibility(R.id.schedule2, View.VISIBLE)
+                            views.setTextViewText(R.id.schedule2, result.documents[1].get("title").toString())
+                        }
+                        if (result.documents.size > 2) {
+                            views.setViewVisibility(R.id.schedule3, View.VISIBLE)
+                            views.setTextViewText(R.id.schedule3, result.documents[2].get("title").toString())
+                        }
+                        if (result.documents.size > 3) {
+                            views.setViewVisibility(R.id.schedule4, View.VISIBLE)
+                            views.setTextViewText(R.id.schedule4, result.documents[3].get("title").toString())
+                        }
+                        if (result.documents.size > 4) {
+                            views.setViewVisibility(R.id.schedule5, View.VISIBLE)
+                            views.setTextViewText(R.id.schedule5, result.documents[4].get("title").toString())
+                        }
+                        if (result.documents.size > 5) {
+                            views.setViewVisibility(R.id.schedule6, View.VISIBLE)
+                            views.setTextViewText(R.id.schedule6, result.documents[5].get("title").toString())
+                        }
+
                         appWidgetManager.updateAppWidget(appWidgetIds[0], views)
                     }
                     .addOnFailureListener { exception ->

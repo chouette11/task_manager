@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -13,7 +14,8 @@ final tasksStreamProvider = StreamProvider<List<TaskData>>((ref) async* {
   // setCalendar(googleUser);
   final collection = FirebaseFirestore.instance.collection('tasks');
   final token = await FirebaseMessaging.instance.getToken();
-  final stream = collection.where('id', isEqualTo: token!).limit(2).snapshots();
+  final uid = FirebaseAuth.instance.currentUser?.uid;
+  final stream = collection.where('id', whereIn:[token, uid]).snapshots();
 
   yield* stream.map((event) => event.docs.map((e) => TaskData(e)).toList());
 });

@@ -11,7 +11,7 @@ class NowTaskCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final firestoreRepository = ref.read(firestoreRepositoryProvider);
     String limit = "";
-    if (taskData.isLimit == false) {
+    if (taskData.isLimit == true) {
       var now = DateTime.now();
       Duration diff = taskData.limit.difference(now);
       int days = diff.inDays;

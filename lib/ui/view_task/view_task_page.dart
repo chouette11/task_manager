@@ -33,7 +33,7 @@ class ViewTaskPage extends ConsumerWidget {
 
                 taskData.forEach((element) {
                   var now = DateTime.now();
-                  if (element.isLimit == true) {
+                  if (element.isLimit == false) {
                     no.add(TaskCard(taskData: element));
                   } else if (now.isAfter(element.limit)) {
                     after.add(TaskCard(taskData: element));

@@ -45,7 +45,6 @@ class OneDayTaskState extends ConsumerState<TaskLimitPage> {
                   int days = diff.inDays;
                   int hours = diff.inHours - (days * 24);
                   int minutes = diff.inMinutes - (days * 24 * 60) - (hours * 60);
-                  print(days);
                   if (days >= 0 && days < widget.index && hours >= 0 && minutes >= 0) {
                     todayTasks.add(element);
                   } else if (element.isLimit == true && check.state == true) {

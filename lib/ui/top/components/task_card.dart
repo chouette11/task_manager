@@ -43,7 +43,7 @@ class TaskCard extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                taskData.isLimit == false ?
+                taskData.isLimit == true ?
                 Text(
                   "残り時間 $limit",
                   style: TextStyle(

@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/data/repository/firestore/firestore_tasks_stream.dart';
 import 'package:task_manager/main.dart';
 import 'package:task_manager/types/task.dart';
+import 'package:task_manager/ui/top/components/task_card.dart';
 
-import '../components/now_task_card.dart';
 
 class TaskLimitPage extends ConsumerStatefulWidget {
   const TaskLimitPage(this.index, {Key? key}) : super(key: key);
@@ -51,12 +51,8 @@ class OneDayTaskState extends ConsumerState<TaskLimitPage> {
                     todayTasks.add(element);
                   }
                 });
-
-                if (todayTasks.length == 0) {
-                  return Text("ありません");
-                }
                 int random = Random().nextInt(todayTasks.length);
-                return NowTaskCard(taskData: todayTasks[random]);
+                return TaskCard(taskData: todayTasks[random]);
               },
               error: (error, _) => Text(error.toString()),
               loading: () => const CircularProgressIndicator(),

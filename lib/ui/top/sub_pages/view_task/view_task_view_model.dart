@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:task_manager/ui/view_task/view_task_state.dart';
+import 'package:task_manager/ui/top/sub_pages/view_task/view_task_state.dart';
 
 final viewTaskViewModelProvider =
 StateNotifierProvider.autoDispose<ViewTaskViewModel, AsyncValue<ViewTaskState>>(

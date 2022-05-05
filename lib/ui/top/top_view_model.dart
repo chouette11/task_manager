@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:task_manager/ui/top/sub_page/task_limit_page.dart';
+import 'package:task_manager/ui/top/sub_pages/task_limit_page.dart';
+import 'package:task_manager/ui/top/sub_pages/view_task/view_task_page.dart';
 import 'package:task_manager/ui/top/top_state.dart';
-import 'package:task_manager/ui/view_task/view_task_page.dart';
 
 final topViewModelProvider =
     StateNotifierProvider.autoDispose<TopViewModel, AsyncValue<TopState>>(

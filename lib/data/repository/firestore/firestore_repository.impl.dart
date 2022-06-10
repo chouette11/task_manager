@@ -81,7 +81,7 @@ class FirestoreRepositoryImpl implements FirestoreRepository {
 
   @override
   Future<Result<void>> onCheck({
-    required TaskData taskData,
+    required Task taskData,
   }) {
     return Result.guardFuture(() async {
       try {

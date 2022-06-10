@@ -6,7 +6,7 @@ import '../../../data/repository/firestore/firestore_repository.impl.dart';
 
 class TaskCard extends ConsumerWidget {
   const TaskCard({Key? key, required this.taskData}) : super(key: key);
-  final TaskData taskData;
+  final Task taskData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

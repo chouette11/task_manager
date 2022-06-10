@@ -16,6 +16,6 @@ abstract class FirestoreRepository {
   });
 
   Future<Result<void>> onCheck({
-    required TaskData taskData
+    required Task taskData
 });
 }

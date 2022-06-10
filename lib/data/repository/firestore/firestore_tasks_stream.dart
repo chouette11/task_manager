@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:task_manager/types/task.dart';
 
-final tasksStreamProvider = StreamProvider<List<TaskData>>((ref) async* {
+final tasksStreamProvider = StreamProvider<List<Task>>((ref) async* {
   final googleUser = GoogleSignIn(scopes: [
     'email',
     'https://www.googleapis.com/auth/contacts.readonly',
@@ -17,5 +17,5 @@ final tasksStreamProvider = StreamProvider<List<TaskData>>((ref) async* {
   final uid = FirebaseAuth.instance.currentUser?.uid;
   final stream = collection.where('id', whereIn:[token, uid]).snapshots();
 
-  yield* stream.map((event) => event.docs.map((e) => TaskData(e)).toList());
+  yield* stream.map((event) => event.docs.map((e) => Task(e)).toList());
 });

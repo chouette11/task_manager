@@ -1,8 +1,28 @@
 import 'package:flutter/material.dart';
 
-class ScheduleOddBox extends StatelessWidget {
-  const ScheduleOddBox({Key? key}) : super(key: key);
+class ScheduleBox extends StatelessWidget {
+  const ScheduleBox({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 400,
+      width: MediaQuery.of(context).size.width - 16,
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          return index % 2 != 1 ?  ScheduleEvenBox(index: index ~/ 2): ScheduleOddBox();
+        },
+        itemCount: 49,
+        shrinkWrap: true,
+      ),
+    );
+  }
+}
+
+
+class ScheduleEvenBox extends StatelessWidget {
+  const ScheduleEvenBox({Key? key, required this.index}) : super(key: key);
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -10,7 +30,7 @@ class ScheduleOddBox extends StatelessWidget {
         SizedBox(
           height: 32,
           width: 48,
-          child: Text("12:00"),
+          child: Text("$index:00"),
         ),
         Column(
           children: [
@@ -32,8 +52,8 @@ class ScheduleOddBox extends StatelessWidget {
   }
 }
 
-class ScheduleEvenBox extends StatelessWidget {
-  const ScheduleEvenBox({Key? key}) : super(key: key);
+class ScheduleOddBox extends StatelessWidget {
+  const ScheduleOddBox({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

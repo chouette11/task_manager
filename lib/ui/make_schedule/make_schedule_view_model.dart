@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:task_manager/ui/make_schedule/make_schedule_state.dart';
 import 'package:task_manager/ui/xxx/xxx_state.dart';
 
 final makeScheduleViewModelProvider =

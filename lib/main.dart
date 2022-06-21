@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:task_manager/ui/add_task/add_task_page.dart';
 import 'package:task_manager/ui/login/login_page.dart';
+import 'package:task_manager/ui/schedule/schedule_page.dart';
 import 'package:task_manager/ui/setting/setting_page.dart';
 import 'package:task_manager/ui/top/top_page.dart';
 
@@ -96,7 +97,11 @@ class _MyAppState extends State<MyApp> {
         GoRoute(
           path: '/setting',
           builder: (context, state) => const SettingPage(),
-        )
+        ),
+        GoRoute(
+          path: '/schedule',
+          builder: (context, state) => const SchedulePage(),
+        ),
       ],
     );
 

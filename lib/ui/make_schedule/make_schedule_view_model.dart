@@ -17,6 +17,10 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
 
   /// 通信、初期化処理
   Future<void> load() async {
-
+    state = AsyncValue.data(
+      MakeScheduleState(
+        taskData: []
+      )
+    );
   }
 }

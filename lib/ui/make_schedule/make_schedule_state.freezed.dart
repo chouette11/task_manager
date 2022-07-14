@@ -18,16 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$MakeScheduleStateTearOff {
   const _$MakeScheduleStateTearOff();
 
-  _MakeScheduleState call(
-      {String appName = "",
-      String packageName = "",
-      String version = "",
-      String buildNumber = ""}) {
+  _MakeScheduleState call({List<Task> taskData = const []}) {
     return _MakeScheduleState(
-      appName: appName,
-      packageName: packageName,
-      version: version,
-      buildNumber: buildNumber,
+      taskData: taskData,
     );
   }
 }
@@ -37,10 +30,7 @@ const $MakeScheduleState = _$MakeScheduleStateTearOff();
 
 /// @nodoc
 mixin _$MakeScheduleState {
-  String get appName => throw _privateConstructorUsedError;
-  String get packageName => throw _privateConstructorUsedError;
-  String get version => throw _privateConstructorUsedError;
-  String get buildNumber => throw _privateConstructorUsedError;
+  List<Task> get taskData => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MakeScheduleStateCopyWith<MakeScheduleState> get copyWith =>
@@ -52,8 +42,7 @@ abstract class $MakeScheduleStateCopyWith<$Res> {
   factory $MakeScheduleStateCopyWith(
           MakeScheduleState value, $Res Function(MakeScheduleState) then) =
       _$MakeScheduleStateCopyWithImpl<$Res>;
-  $Res call(
-      {String appName, String packageName, String version, String buildNumber});
+  $Res call({List<Task> taskData});
 }
 
 /// @nodoc
@@ -67,28 +56,13 @@ class _$MakeScheduleStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? appName = freezed,
-    Object? packageName = freezed,
-    Object? version = freezed,
-    Object? buildNumber = freezed,
+    Object? taskData = freezed,
   }) {
     return _then(_value.copyWith(
-      appName: appName == freezed
-          ? _value.appName
-          : appName // ignore: cast_nullable_to_non_nullable
-              as String,
-      packageName: packageName == freezed
-          ? _value.packageName
-          : packageName // ignore: cast_nullable_to_non_nullable
-              as String,
-      version: version == freezed
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as String,
-      buildNumber: buildNumber == freezed
-          ? _value.buildNumber
-          : buildNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+      taskData: taskData == freezed
+          ? _value.taskData
+          : taskData // ignore: cast_nullable_to_non_nullable
+              as List<Task>,
     ));
   }
 }
@@ -100,8 +74,7 @@ abstract class _$MakeScheduleStateCopyWith<$Res>
           _MakeScheduleState value, $Res Function(_MakeScheduleState) then) =
       __$MakeScheduleStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String appName, String packageName, String version, String buildNumber});
+  $Res call({List<Task> taskData});
 }
 
 /// @nodoc
@@ -117,28 +90,13 @@ class __$MakeScheduleStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? appName = freezed,
-    Object? packageName = freezed,
-    Object? version = freezed,
-    Object? buildNumber = freezed,
+    Object? taskData = freezed,
   }) {
     return _then(_MakeScheduleState(
-      appName: appName == freezed
-          ? _value.appName
-          : appName // ignore: cast_nullable_to_non_nullable
-              as String,
-      packageName: packageName == freezed
-          ? _value.packageName
-          : packageName // ignore: cast_nullable_to_non_nullable
-              as String,
-      version: version == freezed
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as String,
-      buildNumber: buildNumber == freezed
-          ? _value.buildNumber
-          : buildNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+      taskData: taskData == freezed
+          ? _value.taskData
+          : taskData // ignore: cast_nullable_to_non_nullable
+              as List<Task>,
     ));
   }
 }
@@ -146,28 +104,15 @@ class __$MakeScheduleStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MakeScheduleState implements _MakeScheduleState {
-  const _$_MakeScheduleState(
-      {this.appName = "",
-      this.packageName = "",
-      this.version = "",
-      this.buildNumber = ""});
+  const _$_MakeScheduleState({this.taskData = const []});
 
   @JsonKey()
   @override
-  final String appName;
-  @JsonKey()
-  @override
-  final String packageName;
-  @JsonKey()
-  @override
-  final String version;
-  @JsonKey()
-  @override
-  final String buildNumber;
+  final List<Task> taskData;
 
   @override
   String toString() {
-    return 'MakeScheduleState(appName: $appName, packageName: $packageName, version: $version, buildNumber: $buildNumber)';
+    return 'MakeScheduleState(taskData: $taskData)';
   }
 
   @override
@@ -175,21 +120,12 @@ class _$_MakeScheduleState implements _MakeScheduleState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _MakeScheduleState &&
-            const DeepCollectionEquality().equals(other.appName, appName) &&
-            const DeepCollectionEquality()
-                .equals(other.packageName, packageName) &&
-            const DeepCollectionEquality().equals(other.version, version) &&
-            const DeepCollectionEquality()
-                .equals(other.buildNumber, buildNumber));
+            const DeepCollectionEquality().equals(other.taskData, taskData));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(appName),
-      const DeepCollectionEquality().hash(packageName),
-      const DeepCollectionEquality().hash(version),
-      const DeepCollectionEquality().hash(buildNumber));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(taskData));
 
   @JsonKey(ignore: true)
   @override
@@ -198,20 +134,11 @@ class _$_MakeScheduleState implements _MakeScheduleState {
 }
 
 abstract class _MakeScheduleState implements MakeScheduleState {
-  const factory _MakeScheduleState(
-      {String appName,
-      String packageName,
-      String version,
-      String buildNumber}) = _$_MakeScheduleState;
+  const factory _MakeScheduleState({List<Task> taskData}) =
+      _$_MakeScheduleState;
 
   @override
-  String get appName;
-  @override
-  String get packageName;
-  @override
-  String get version;
-  @override
-  String get buildNumber;
+  List<Task> get taskData;
   @override
   @JsonKey(ignore: true)
   _$MakeScheduleStateCopyWith<_MakeScheduleState> get copyWith =>

@@ -27,7 +27,7 @@ class MakeSchedulePage extends ConsumerWidget {
               ),
               Container(
                 width: mediaSize.width,
-                height: 320,
+                height: 280,
                 child: GridView.count(
                   crossAxisCount: 2,
                   childAspectRatio: 1.5,
@@ -36,7 +36,25 @@ class MakeSchedulePage extends ConsumerWidget {
                   ).toList(),
                 ),
               ),
-              CustomSlider()
+              CustomSlider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text("休憩"),
+                  ElevatedButton(
+                    onPressed: (){},
+                    child: Text("15分"),
+                  ),
+                  ElevatedButton(
+                    onPressed: (){},
+                    child: Text("30分"),
+                  ),
+                  ElevatedButton(
+                    onPressed: (){},
+                    child: Text("1時間"),
+                  ),
+                ],
+              )
             ],
           ),
         );

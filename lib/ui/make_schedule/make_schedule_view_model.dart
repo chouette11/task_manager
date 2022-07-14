@@ -20,7 +20,8 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
   Future<void> load() async {
     state = AsyncValue.data(
       MakeScheduleState(
-        taskData: taskData.value!
+        taskData: taskData.value!,
+        pieData: [{"domain": "寝る", "measure": 8}, {"domain": "その他", "measure": 16},],
       )
     );
   }

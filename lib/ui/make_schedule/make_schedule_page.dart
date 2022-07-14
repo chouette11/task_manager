@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:task_manager/ui/make_schedule/components/pie_chart.dart';
 import 'package:task_manager/ui/make_schedule/make_schedule_view_model.dart';
 import 'package:task_manager/ui/top/top_page.dart';
 
@@ -18,6 +19,11 @@ class MakeSchedulePage extends ConsumerWidget {
         return Scaffold(
           body: Column(
             children: [
+              SizedBox(
+                width: 200,
+                height: 200,
+                child: PieChart(pieData: data.pieData),
+              ),
               Container(
                 width: mediaSize.width,
                 height: 400,

@@ -2,17 +2,13 @@ import 'package:d_chart/d_chart.dart';
 import 'package:flutter/material.dart';
 
 class PieChart extends StatelessWidget {
-  const PieChart({Key? key}) : super(key: key);
+  const PieChart({Key? key, required this.pieData}) : super(key: key);
+  final List<Map<String, dynamic>> pieData;
 
   @override
   Widget build(BuildContext context) {
     return DChartPie(
-      data: [
-        {'domain': 'Flutter', 'measure': 28},
-        {'domain': 'React Native', 'measure': 5},
-        {'domain': 'Ionic', 'measure': 20},
-        {'domain': 'Cordova', 'measure': 15},
-      ],
+      data: pieData,
       fillColor: (pieData, index) {
         switch (pieData['domain']) {
           case 'Flutter':

@@ -18,9 +18,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$MakeScheduleStateTearOff {
   const _$MakeScheduleStateTearOff();
 
-  _MakeScheduleState call({List<Task> taskData = const []}) {
+  _MakeScheduleState call(
+      {List<Task> taskData = const [],
+      List<Map<String, dynamic>> pieData = const []}) {
     return _MakeScheduleState(
       taskData: taskData,
+      pieData: pieData,
     );
   }
 }
@@ -31,6 +34,7 @@ const $MakeScheduleState = _$MakeScheduleStateTearOff();
 /// @nodoc
 mixin _$MakeScheduleState {
   List<Task> get taskData => throw _privateConstructorUsedError;
+  List<Map<String, dynamic>> get pieData => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MakeScheduleStateCopyWith<MakeScheduleState> get copyWith =>
@@ -42,7 +46,7 @@ abstract class $MakeScheduleStateCopyWith<$Res> {
   factory $MakeScheduleStateCopyWith(
           MakeScheduleState value, $Res Function(MakeScheduleState) then) =
       _$MakeScheduleStateCopyWithImpl<$Res>;
-  $Res call({List<Task> taskData});
+  $Res call({List<Task> taskData, List<Map<String, dynamic>> pieData});
 }
 
 /// @nodoc
@@ -57,12 +61,17 @@ class _$MakeScheduleStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? taskData = freezed,
+    Object? pieData = freezed,
   }) {
     return _then(_value.copyWith(
       taskData: taskData == freezed
           ? _value.taskData
           : taskData // ignore: cast_nullable_to_non_nullable
               as List<Task>,
+      pieData: pieData == freezed
+          ? _value.pieData
+          : pieData // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>,
     ));
   }
 }
@@ -74,7 +83,7 @@ abstract class _$MakeScheduleStateCopyWith<$Res>
           _MakeScheduleState value, $Res Function(_MakeScheduleState) then) =
       __$MakeScheduleStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<Task> taskData});
+  $Res call({List<Task> taskData, List<Map<String, dynamic>> pieData});
 }
 
 /// @nodoc
@@ -91,12 +100,17 @@ class __$MakeScheduleStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? taskData = freezed,
+    Object? pieData = freezed,
   }) {
     return _then(_MakeScheduleState(
       taskData: taskData == freezed
           ? _value.taskData
           : taskData // ignore: cast_nullable_to_non_nullable
               as List<Task>,
+      pieData: pieData == freezed
+          ? _value.pieData
+          : pieData // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>,
     ));
   }
 }
@@ -104,15 +118,19 @@ class __$MakeScheduleStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MakeScheduleState implements _MakeScheduleState {
-  const _$_MakeScheduleState({this.taskData = const []});
+  const _$_MakeScheduleState(
+      {this.taskData = const [], this.pieData = const []});
 
   @JsonKey()
   @override
   final List<Task> taskData;
+  @JsonKey()
+  @override
+  final List<Map<String, dynamic>> pieData;
 
   @override
   String toString() {
-    return 'MakeScheduleState(taskData: $taskData)';
+    return 'MakeScheduleState(taskData: $taskData, pieData: $pieData)';
   }
 
   @override
@@ -120,12 +138,15 @@ class _$_MakeScheduleState implements _MakeScheduleState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _MakeScheduleState &&
-            const DeepCollectionEquality().equals(other.taskData, taskData));
+            const DeepCollectionEquality().equals(other.taskData, taskData) &&
+            const DeepCollectionEquality().equals(other.pieData, pieData));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(taskData));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(taskData),
+      const DeepCollectionEquality().hash(pieData));
 
   @JsonKey(ignore: true)
   @override
@@ -134,11 +155,14 @@ class _$_MakeScheduleState implements _MakeScheduleState {
 }
 
 abstract class _MakeScheduleState implements MakeScheduleState {
-  const factory _MakeScheduleState({List<Task> taskData}) =
-      _$_MakeScheduleState;
+  const factory _MakeScheduleState(
+      {List<Task> taskData,
+      List<Map<String, dynamic>> pieData}) = _$_MakeScheduleState;
 
   @override
   List<Task> get taskData;
+  @override
+  List<Map<String, dynamic>> get pieData;
   @override
   @JsonKey(ignore: true)
   _$MakeScheduleStateCopyWith<_MakeScheduleState> get copyWith =>

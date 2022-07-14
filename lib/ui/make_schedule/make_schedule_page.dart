@@ -12,16 +12,21 @@ class MakeSchedulePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(makeScheduleViewModelProvider);
     final viewModel = ref.watch(makeScheduleViewModelProvider.notifier);
+    final mediaSize = MediaQuery.of(context).size;
     return state.when(
       data: (data) {
         return Scaffold(
           body: Column(
             children: [
-              GridView.count(
-                crossAxisCount: 2,
-                children: data.taskData.map((task) =>
-                    GridTile(child: TaskCard(task: task))
-                ).toList(),
+              Container(
+                width: mediaSize.width,
+                height: 400,
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  children: data.taskData.map((task) =>
+                      TaskCard(task: task)
+                  ).toList(),
+                ),
               )
             ],
           ),

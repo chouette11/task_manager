@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:home_widget/home_widget.dart';
 import 'package:task_manager/ui/components/appbar.dart';
 import 'package:task_manager/ui/components/drawer/drawer.dart';
 import 'package:task_manager/ui/components/layout/default.dart';
@@ -40,7 +39,6 @@ class SettingPage extends ConsumerWidget {
                     idToken: auth.idToken,
                   );
                   print(FirebaseAuth.instance.signInWithCredential(credential));
-                  _updateWidget();
                 }
               ),
             ],
@@ -48,19 +46,4 @@ class SettingPage extends ConsumerWidget {
         }
     );
   }
-}
-
-void _updateWidget() {
-  HomeWidget.updateWidget(
-      name: "SmallWidget",
-      androidName: "WidgetProvider",
-      iOSName: "SmallWidget");
-  HomeWidget.updateWidget(
-      name: "MediumWidget",
-      androidName: "WidgetProvider",
-      iOSName: "MediumWidget");
-  HomeWidget.updateWidget(
-      name: "LargeWidget",
-      androidName: "WidgetProvider",
-      iOSName: "LargeWidget");
 }

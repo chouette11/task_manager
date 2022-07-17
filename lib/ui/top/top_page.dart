@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:task_manager/ui/add_task/add_task_page.dart';
 import 'package:task_manager/ui/components/drawer/drawer.dart';
 import 'package:task_manager/ui/components/drawer/drawer_button.dart';
@@ -17,7 +16,7 @@ class TopPage extends ConsumerWidget {
       data: (data) {
         return MaterialApp(
           theme: ThemeData(
-            primaryColor: HexColor("F06A30"),
+            primaryColor: Colors.orange,
             primarySwatch: Colors.orange,
           ),
           home: DefaultTabController(

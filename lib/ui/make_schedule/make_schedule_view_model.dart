@@ -32,7 +32,21 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
     state = AsyncValue.data(state.value!.copyWith(currentSliderValue: value));
   }
 
-  void onAddTaskToPieData(String task) {
+  void onAddPieColor() {
+    final colors = [
+      Color.fromARGB(255, 255, 128, 128),
+      Color.fromARGB(255, 204, 128, 255),
+      Color.fromARGB(255, 128, 255, 211),
+      Color.fromARGB(255, 170, 255, 128),
+      Color.fromARGB(255, 128, 139, 255),
+      Color.fromARGB(255, 255, 244, 128),
+    ];
+    var tmpPieColors = List.of(state.value!.pieColors);
+    tmpPieColors.insert(tmpPieColors.length - 1, colors[tmpPieColors.length % 6]);
+    state = AsyncValue.data(state.value!.copyWith(pieColors: tmpPieColors));
+  }
+
+  void onAddTaskToPieData(String taskName) {
     double measureSum = 0;
     // pieDataの複製
     var tmpPieData = Map.of(state.value!.pieData);

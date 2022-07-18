@@ -29,7 +29,7 @@ class MakeSchedulePage extends ConsumerWidget {
                   children: data.taskData.map((task) =>
                       GestureDetector(
                         onTap: () {
-                          viewModel.onTaskCard(task.title);
+                          viewModel.onAddTaskToPieData(task.title);
                         },
                         child: TaskCard(task: task),
                       ),

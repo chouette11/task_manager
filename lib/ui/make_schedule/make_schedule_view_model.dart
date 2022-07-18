@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/data/repository/firestore/firestore_tasks_stream.dart';
 import 'package:task_manager/ui/make_schedule/make_schedule_state.dart';
@@ -21,7 +22,8 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
     state = AsyncValue.data(
       MakeScheduleState(
         taskData: taskData.value!,
-        pieData: [{"domain": "寝る", "measure": 8}, {"domain": "その他", "measure": 16},],
+        pieData: {'寝る': 8, 'その他': 16},
+        pieColors: [Colors.black12, Colors.grey]
       )
     );
   }
@@ -33,28 +35,27 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
   void onAddTaskToPieData(String task) {
     double measureSum = 0;
     // pieDataの複製
-    var tmpPieData = List.of(state.value!.pieData);
+    var tmpPieData = Map.of(state.value!.pieData);
     // その他の削除
-    tmpPieData.removeLast();
+    tmpPieData.remove('その他');
     // Mapのtaskのかぶり排除
-    tmpPieData.forEach((e) {
-      if (e['domain'] == task) {
+    tmpPieData.forEach((key, value) {
+      if (key == task) {
         task += ' ';
       }
     });
     // Mapの宣言
     final taskMap = {
-      "domain": task,
-      "measure": state.value!.currentSliderValue
+      task: state.value!.currentSliderValue,
     };
     // 新規タスクの追加
-    tmpPieData.add(taskMap);
+    tmpPieData.addAll(taskMap);
     // 現在のタスクの合計
-    tmpPieData.forEach((e) {
-      measureSum += e['measure'];
+    tmpPieData.forEach((key, value) {
+      measureSum += value;
     });
     // その他の追加
-    tmpPieData.add({"domain": "その他", "measure": 24 - measureSum});
+    tmpPieData.addAll({"その他": 24 - measureSum});
     state = AsyncValue.data(state.value!.copyWith(pieData: tmpPieData));
   }
 }

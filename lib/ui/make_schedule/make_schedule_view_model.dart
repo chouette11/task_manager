@@ -31,15 +31,22 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
   }
 
   void onAddTaskToPieData(String task) {
-    final taskMap = {
-      "domain": task,
-      "measure": state.value!.currentSliderValue
-    };
     double measureSum = 0;
     // pieDataの複製
     var tmpPieData = List.of(state.value!.pieData);
     // その他の削除
     tmpPieData.removeLast();
+    // Mapのtaskのかぶり排除
+    tmpPieData.forEach((e) {
+      if (e['domain'] == task) {
+        task += ' ';
+      }
+    });
+    // Mapの宣言
+    final taskMap = {
+      "domain": task,
+      "measure": state.value!.currentSliderValue
+    };
     // 新規タスクの追加
     tmpPieData.add(taskMap);
     // 現在のタスクの合計

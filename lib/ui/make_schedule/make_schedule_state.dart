@@ -11,5 +11,6 @@ class MakeScheduleState with _$MakeScheduleState {
     @Default(0.5) double currentSliderValue,
     @Default({}) Map<String, double> pieData,
     @Default([]) List<Color> pieColors,
+    @Default([]) List<String> pieLegends,
   }) = _MakeScheduleState;
 }

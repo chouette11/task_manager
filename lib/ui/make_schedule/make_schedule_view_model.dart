@@ -23,7 +23,8 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
       MakeScheduleState(
         taskData: taskData.value!,
         pieData: {'寝る': 8, 'その他': 16},
-        pieColors: [Colors.black12, Colors.grey]
+        pieColors: [Colors.black12, Colors.grey],
+        pieLegends: {'寝る': Colors.black12, 'その他': Colors.grey},
       )
     );
   }
@@ -32,21 +33,14 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
     state = AsyncValue.data(state.value!.copyWith(currentSliderValue: value));
   }
 
-  void onAddPieColor() {
-    final colors = [
-      Color.fromARGB(255, 255, 128, 128),
-      Color.fromARGB(255, 204, 128, 255),
-      Color.fromARGB(255, 128, 255, 211),
-      Color.fromARGB(255, 170, 255, 128),
-      Color.fromARGB(255, 128, 139, 255),
-      Color.fromARGB(255, 255, 244, 128),
-    ];
+  void onAddPieColor(String oriTaskName) {
     var tmpPieColors = List.of(state.value!.pieColors);
-    tmpPieColors.insert(tmpPieColors.length - 1, colors[tmpPieColors.length % 6]);
+    tmpPieColors.insert(tmpPieColors.length - 1, state.value!.pieLegends[oriTaskName]!);
     state = AsyncValue.data(state.value!.copyWith(pieColors: tmpPieColors));
   }
 
   void onAddTaskToPieData(String taskName) {
+    final oriTaskName = taskName;
     double measureSum = 0;
     // pieDataの複製
     var tmpPieData = Map.of(state.value!.pieData);
@@ -70,21 +64,27 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
     });
     // その他の追加
     tmpPieData.addAll({"その他": 24 - measureSum});
+
+    // レジェンドの追加
+    onAddPieLegends(oriTaskName);
+    // 色の追加
+    onAddPieColor(oriTaskName);
     state = AsyncValue.data(state.value!.copyWith(pieData: tmpPieData));
   }
 
-  void onAddPieLegends(String taskName) {
-    var tmpPieLegends = state.value!.pieLegends;
-    tmpPieLegends.insert(tmpPieLegends.length - 1, taskName);
-    state = AsyncValue.data(state.value!.copyWith(pieLegends: tmpPieLegends));
-  }
+  void onAddPieLegends(String oriTaskName) {
+    final colors = [
+      Color.fromARGB(255, 255, 128, 128),
+      Color.fromARGB(255, 204, 128, 255),
+      Color.fromARGB(255, 128, 255, 211),
+      Color.fromARGB(255, 170, 255, 128),
+      Color.fromARGB(255, 128, 139, 255),
+      Color.fromARGB(255, 255, 244, 128),
+    ];
 
-  void onTaskCard(String taskName) {
-    // タスクの追加
-    onAddTaskToPieData(taskName);
-    // 色の追加
-    onAddPieColor();
-    // レジェンドの追加
-    onAddPieLegends(taskName);
+    var tmpPieLegends = state.value!.pieLegends;
+    tmpPieLegends.containsKey(oriTaskName) ?
+    null : tmpPieLegends.addAll({oriTaskName: colors[tmpPieLegends.length % 6]});
+    state = AsyncValue.data(state.value!.copyWith(pieLegends: tmpPieLegends));
   }
 }

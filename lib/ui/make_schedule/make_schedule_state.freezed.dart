@@ -21,11 +21,13 @@ class _$MakeScheduleStateTearOff {
   _MakeScheduleState call(
       {List<Task> taskData = const [],
       double currentSliderValue = 0.5,
-      List<Map<String, dynamic>> pieData = const []}) {
+      Map<String, double> pieData = const {},
+      List<Color> pieColors = const []}) {
     return _MakeScheduleState(
       taskData: taskData,
       currentSliderValue: currentSliderValue,
       pieData: pieData,
+      pieColors: pieColors,
     );
   }
 }
@@ -37,7 +39,8 @@ const $MakeScheduleState = _$MakeScheduleStateTearOff();
 mixin _$MakeScheduleState {
   List<Task> get taskData => throw _privateConstructorUsedError;
   double get currentSliderValue => throw _privateConstructorUsedError;
-  List<Map<String, dynamic>> get pieData => throw _privateConstructorUsedError;
+  Map<String, double> get pieData => throw _privateConstructorUsedError;
+  List<Color> get pieColors => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MakeScheduleStateCopyWith<MakeScheduleState> get copyWith =>
@@ -52,7 +55,8 @@ abstract class $MakeScheduleStateCopyWith<$Res> {
   $Res call(
       {List<Task> taskData,
       double currentSliderValue,
-      List<Map<String, dynamic>> pieData});
+      Map<String, double> pieData,
+      List<Color> pieColors});
 }
 
 /// @nodoc
@@ -69,6 +73,7 @@ class _$MakeScheduleStateCopyWithImpl<$Res>
     Object? taskData = freezed,
     Object? currentSliderValue = freezed,
     Object? pieData = freezed,
+    Object? pieColors = freezed,
   }) {
     return _then(_value.copyWith(
       taskData: taskData == freezed
@@ -82,7 +87,11 @@ class _$MakeScheduleStateCopyWithImpl<$Res>
       pieData: pieData == freezed
           ? _value.pieData
           : pieData // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+              as Map<String, double>,
+      pieColors: pieColors == freezed
+          ? _value.pieColors
+          : pieColors // ignore: cast_nullable_to_non_nullable
+              as List<Color>,
     ));
   }
 }
@@ -97,7 +106,8 @@ abstract class _$MakeScheduleStateCopyWith<$Res>
   $Res call(
       {List<Task> taskData,
       double currentSliderValue,
-      List<Map<String, dynamic>> pieData});
+      Map<String, double> pieData,
+      List<Color> pieColors});
 }
 
 /// @nodoc
@@ -116,6 +126,7 @@ class __$MakeScheduleStateCopyWithImpl<$Res>
     Object? taskData = freezed,
     Object? currentSliderValue = freezed,
     Object? pieData = freezed,
+    Object? pieColors = freezed,
   }) {
     return _then(_MakeScheduleState(
       taskData: taskData == freezed
@@ -129,7 +140,11 @@ class __$MakeScheduleStateCopyWithImpl<$Res>
       pieData: pieData == freezed
           ? _value.pieData
           : pieData // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+              as Map<String, double>,
+      pieColors: pieColors == freezed
+          ? _value.pieColors
+          : pieColors // ignore: cast_nullable_to_non_nullable
+              as List<Color>,
     ));
   }
 }
@@ -140,7 +155,8 @@ class _$_MakeScheduleState implements _MakeScheduleState {
   const _$_MakeScheduleState(
       {this.taskData = const [],
       this.currentSliderValue = 0.5,
-      this.pieData = const []});
+      this.pieData = const {},
+      this.pieColors = const []});
 
   @JsonKey()
   @override
@@ -150,11 +166,14 @@ class _$_MakeScheduleState implements _MakeScheduleState {
   final double currentSliderValue;
   @JsonKey()
   @override
-  final List<Map<String, dynamic>> pieData;
+  final Map<String, double> pieData;
+  @JsonKey()
+  @override
+  final List<Color> pieColors;
 
   @override
   String toString() {
-    return 'MakeScheduleState(taskData: $taskData, currentSliderValue: $currentSliderValue, pieData: $pieData)';
+    return 'MakeScheduleState(taskData: $taskData, currentSliderValue: $currentSliderValue, pieData: $pieData, pieColors: $pieColors)';
   }
 
   @override
@@ -165,7 +184,8 @@ class _$_MakeScheduleState implements _MakeScheduleState {
             const DeepCollectionEquality().equals(other.taskData, taskData) &&
             const DeepCollectionEquality()
                 .equals(other.currentSliderValue, currentSliderValue) &&
-            const DeepCollectionEquality().equals(other.pieData, pieData));
+            const DeepCollectionEquality().equals(other.pieData, pieData) &&
+            const DeepCollectionEquality().equals(other.pieColors, pieColors));
   }
 
   @override
@@ -173,7 +193,8 @@ class _$_MakeScheduleState implements _MakeScheduleState {
       runtimeType,
       const DeepCollectionEquality().hash(taskData),
       const DeepCollectionEquality().hash(currentSliderValue),
-      const DeepCollectionEquality().hash(pieData));
+      const DeepCollectionEquality().hash(pieData),
+      const DeepCollectionEquality().hash(pieColors));
 
   @JsonKey(ignore: true)
   @override
@@ -185,14 +206,17 @@ abstract class _MakeScheduleState implements MakeScheduleState {
   const factory _MakeScheduleState(
       {List<Task> taskData,
       double currentSliderValue,
-      List<Map<String, dynamic>> pieData}) = _$_MakeScheduleState;
+      Map<String, double> pieData,
+      List<Color> pieColors}) = _$_MakeScheduleState;
 
   @override
   List<Task> get taskData;
   @override
   double get currentSliderValue;
   @override
-  List<Map<String, dynamic>> get pieData;
+  Map<String, double> get pieData;
+  @override
+  List<Color> get pieColors;
   @override
   @JsonKey(ignore: true)
   _$MakeScheduleStateCopyWith<_MakeScheduleState> get copyWith =>

@@ -54,13 +54,13 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
     tmpPieData.remove('その他');
     // Mapのtaskのかぶり排除
     tmpPieData.forEach((key, value) {
-      if (key == task) {
-        task += ' ';
+      if (key == taskName) {
+        taskName += ' ';
       }
     });
     // Mapの宣言
     final taskMap = {
-      task: state.value!.currentSliderValue,
+      taskName: state.value!.currentSliderValue,
     };
     // 新規タスクの追加
     tmpPieData.addAll(taskMap);

@@ -72,4 +72,19 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
     tmpPieData.addAll({"その他": 24 - measureSum});
     state = AsyncValue.data(state.value!.copyWith(pieData: tmpPieData));
   }
+
+  void onAddPieLegends(String taskName) {
+    var tmpPieLegends = state.value!.pieLegends;
+    tmpPieLegends.insert(tmpPieLegends.length - 1, taskName);
+    state = AsyncValue.data(state.value!.copyWith(pieLegends: tmpPieLegends));
+  }
+
+  void onTaskCard(String taskName) {
+    // タスクの追加
+    onAddTaskToPieData(taskName);
+    // 色の追加
+    onAddPieColor();
+    // レジェンドの追加
+    onAddPieLegends(taskName);
+  }
 }

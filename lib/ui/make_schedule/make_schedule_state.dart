@@ -7,6 +7,7 @@ part 'make_schedule_state.freezed.dart';
 class MakeScheduleState with _$MakeScheduleState {
   const factory MakeScheduleState({
     @Default([]) List<Task> taskData,
+    @Default(0.5) double currentSliderValue,
     @Default([]) List<Map<String, dynamic>> pieData,
   }) = _MakeScheduleState;
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/ui/make_schedule/components/pie_chart.dart';
-import 'package:task_manager/ui/make_schedule/components/slider.dart';
 import 'package:task_manager/ui/make_schedule/make_schedule_view_model.dart';
 import 'package:task_manager/ui/top/top_page.dart';
 
@@ -32,11 +31,22 @@ class MakeSchedulePage extends ConsumerWidget {
                   crossAxisCount: 2,
                   childAspectRatio: 1.5,
                   children: data.taskData.map((task) =>
-                      TaskCard(task: task)
+                      GestureDetector(
+                        onTap: () {
+                          viewModel.onAddTaskToPieData(task.title);
+                        },
+                        child: TaskCard(task: task),
+                      ),
                   ).toList(),
                 ),
               ),
-              CustomSlider(),
+              Slider(
+                value: data.currentSliderValue,
+                max: 4,
+                divisions: 8,
+                label: "${data.currentSliderValue.toString()}" + "時間",
+                onChanged: viewModel.onChangeSliderValue,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

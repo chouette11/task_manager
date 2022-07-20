@@ -39,6 +39,22 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
     state = AsyncValue.data(state.value!.copyWith(pieColors: tmpPieColors));
   }
 
+  void onAddPieLegends(String oriTaskName) {
+    final colors = [
+      Color.fromARGB(255, 255, 128, 128),
+      Color.fromARGB(255, 204, 128, 255),
+      Color.fromARGB(255, 128, 255, 211),
+      Color.fromARGB(255, 170, 255, 128),
+      Color.fromARGB(255, 128, 139, 255),
+      Color.fromARGB(255, 255, 244, 128),
+    ];
+
+    var tmpPieLegends = state.value!.pieLegends;
+    tmpPieLegends.containsKey(oriTaskName) ?
+    null : tmpPieLegends.addAll({oriTaskName: colors[tmpPieLegends.length % 6]});
+    state = AsyncValue.data(state.value!.copyWith(pieLegends: tmpPieLegends));
+  }
+
   void onAddTaskToPieData(String taskName) {
     final oriTaskName = taskName;
     double measureSum = 0;
@@ -70,21 +86,5 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
     // 色の追加
     onAddPieColor(oriTaskName);
     state = AsyncValue.data(state.value!.copyWith(pieData: tmpPieData));
-  }
-
-  void onAddPieLegends(String oriTaskName) {
-    final colors = [
-      Color.fromARGB(255, 255, 128, 128),
-      Color.fromARGB(255, 204, 128, 255),
-      Color.fromARGB(255, 128, 255, 211),
-      Color.fromARGB(255, 170, 255, 128),
-      Color.fromARGB(255, 128, 139, 255),
-      Color.fromARGB(255, 255, 244, 128),
-    ];
-
-    var tmpPieLegends = state.value!.pieLegends;
-    tmpPieLegends.containsKey(oriTaskName) ?
-    null : tmpPieLegends.addAll({oriTaskName: colors[tmpPieLegends.length % 6]});
-    state = AsyncValue.data(state.value!.copyWith(pieLegends: tmpPieLegends));
   }
 }

@@ -15,7 +15,7 @@ final tasksStreamProvider = StreamProvider<List<Task>>((ref) async* {
   final collection = FirebaseFirestore.instance.collection('tasks');
   final token = await FirebaseMessaging.instance.getToken();
   final uid = FirebaseAuth.instance.currentUser?.uid;
-  final stream = collection.where('id', whereIn:[token, uid]).snapshots();
+  final stream = collection.snapshots();
 
   yield* stream.map((event) => event.docs.map((e) => Task(e)).toList());
 });

@@ -19,7 +19,7 @@ class MakeSchedulePage extends ConsumerWidget {
         return Scaffold(
           body: Column(
             children: [
-              CustomPieChart(pieData: data.pieData, colors: data.pieColors),
+              CustomPieChart(pieData: data.pieData, colors: data.pieColors, legends: data.pieLegends),
               Container(
                 width: mediaSize.width,
                 height: 280,

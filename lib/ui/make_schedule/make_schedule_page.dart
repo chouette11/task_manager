@@ -28,9 +28,7 @@ class MakeSchedulePage extends ConsumerWidget {
                   childAspectRatio: 1.5,
                   children: data.taskData.map((task) =>
                       GestureDetector(
-                        onTap: () {
-                          viewModel.onAddTaskToPieData(task.title);
-                        },
+                        onTap: () => viewModel.onAddTaskToPieData(task.title),
                         child: TaskCard(task: task),
                       ),
                   ).toList(),
@@ -48,15 +46,15 @@ class MakeSchedulePage extends ConsumerWidget {
                 children: [
                   Text("休憩"),
                   ElevatedButton(
-                    onPressed: (){},
+                    onPressed: () => viewModel.onAddTaskToPieData('休憩', hours: 0.25),
                     child: Text("15分"),
                   ),
                   ElevatedButton(
-                    onPressed: (){},
+                    onPressed: () => viewModel.onAddTaskToPieData('休憩', hours: 0.5),
                     child: Text("30分"),
                   ),
                   ElevatedButton(
-                    onPressed: (){},
+                    onPressed: () => viewModel.onAddTaskToPieData('休憩', hours: 1),
                     child: Text("1時間"),
                   ),
                 ],

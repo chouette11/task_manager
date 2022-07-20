@@ -30,7 +30,7 @@ class CustomPieChart extends StatelessWidget {
             ),
           ),
           Expanded(
-              child: LegendListView(legends: legends)
+            child: LegendListView(legends: legends),
           ),
         ],
       ),

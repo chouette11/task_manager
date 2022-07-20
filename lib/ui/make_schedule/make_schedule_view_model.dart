@@ -55,14 +55,14 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
     state = AsyncValue.data(state.value!.copyWith(pieLegends: tmpPieLegends));
   }
 
-  void onAddTaskToPieData(String taskName) {
+  void onAddTaskToPieData(String taskName, {double? hours}) {
     final oriTaskName = taskName;
     double measureSum = 0;
     // pieDataの複製
     var tmpPieData = Map.of(state.value!.pieData);
     // その他の削除
     tmpPieData.remove('その他');
-    // Mapのtaskのかぶり排除
+    // taskのMapかぶり排除
     tmpPieData.forEach((key, value) {
       if (key == taskName) {
         taskName += ' ';
@@ -70,11 +70,12 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
     });
     // Mapの宣言
     final taskMap = {
-      taskName: state.value!.currentSliderValue,
+      // hoursがnullのときsliderValueがvalueとなる
+      taskName: hours ?? state.value!.currentSliderValue,
     };
     // 新規タスクの追加
     tmpPieData.addAll(taskMap);
-    // 現在のタスクの合計
+    // 現在のタスクの時間の合計
     tmpPieData.forEach((key, value) {
       measureSum += value;
     });

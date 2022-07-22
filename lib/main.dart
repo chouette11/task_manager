@@ -7,6 +7,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:go_router/go_router.dart';
 import 'package:task_manager/ui/add_task/add_task_page.dart';
 import 'package:task_manager/ui/login/login_page.dart';
+import 'package:task_manager/ui/make_schedule/make_schedule_page.dart';
+import 'package:task_manager/ui/make_schedule/sub_pages/get_up_schedule/get_up_page.dart';
 import 'package:task_manager/ui/setting/setting_page.dart';
 import 'package:task_manager/ui/top/top_page.dart';
 
@@ -86,6 +88,18 @@ class _MyAppState extends State<MyApp> {
         GoRoute(
           path: '/',
           builder: (context, state) => const TopPage(),
+          routes: [
+            GoRoute(
+                path: 'get_up/:',
+                builder: (context, state) => const GetUpPage(),
+                routes: [
+                  GoRoute(
+                    path: 'make/:',
+                    builder: (context, state) => const MakeSchedulePage(),
+                  ),
+                ]
+            ),
+          ]
         ),
         GoRoute(
           path: '/add_task',
@@ -94,7 +108,7 @@ class _MyAppState extends State<MyApp> {
         GoRoute(
           path: '/setting',
           builder: (context, state) => const SettingPage(),
-        )
+        ),
       ],
     );
 

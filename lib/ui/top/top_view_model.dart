@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:task_manager/ui/make_schedule/sub_pages/start_schedule_page.dart';
 import 'package:task_manager/ui/top/sub_pages/limit_task/task_limit_page.dart';
 import 'package:task_manager/ui/top/sub_pages/view_task/view_task_page.dart';
 import 'package:task_manager/ui/top/top_state.dart';
@@ -30,8 +31,10 @@ class TopViewModel extends StateNotifier<AsyncValue<TopState>> {
     state = AsyncValue.data(state.value!.copyWith(pageIndex: index));
     if (index == 0) {
       state = AsyncValue.data(state.value!.copyWith(page: TaskLimitPage()));
-    } else {
+    } else if (index == 1) {
       state = AsyncValue.data(state.value!.copyWith(page: ViewTaskPage()));
+    } else {
+      state = AsyncValue.data(state.value!.copyWith(page: StartSchedulePage()));
     }
   }
 }

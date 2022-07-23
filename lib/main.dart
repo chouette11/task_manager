@@ -119,7 +119,12 @@ class _MyAppState extends State<MyApp> {
             color: Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 24,
-          )
+          ),
+          titleSmall: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),
         )
       ),
       routeInformationParser: _router.routeInformationParser,

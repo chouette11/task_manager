@@ -39,6 +39,13 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
     state = AsyncValue.data(state.value!.copyWith(pieColors: tmpPieColors));
   }
 
+  double timeToAngle(TimeOfDay time) {
+    double angle = 0;
+    angle += time.hour * 15;
+    angle += time.minute * 0.25;
+    return angle;
+  }
+
   void onAddPieLegends(String oriTaskName) {
     final colors = [
       Color.fromARGB(255, 255, 128, 128),

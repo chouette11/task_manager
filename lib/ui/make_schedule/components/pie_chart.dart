@@ -5,11 +5,13 @@ class CustomPieChart extends StatelessWidget {
   const CustomPieChart({Key? key,
     required this.pieData,
     required this.colors,
-    required this.legends
+    required this.legends,
+    required this.initialAngle
   }) : super(key: key);
   final Map<String, double> pieData;
   final List<Color> colors;
   final Map<String, Color> legends;
+  final double initialAngle;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,8 @@ class CustomPieChart extends StatelessWidget {
             flex: 2,
             child: PieChart(
               dataMap: pieData,
-              initialAngleInDegree: 270,
+              initialAngleInDegree: initialAngle + 270 > 360 ?
+              initialAngle - 90 : initialAngle + 270,
               colorList: colors,
               legendOptions: LegendOptions(
                 showLegends: false,

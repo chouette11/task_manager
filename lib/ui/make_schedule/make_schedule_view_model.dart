@@ -22,7 +22,7 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
     state = AsyncValue.data(
       MakeScheduleState(
         taskData: taskData.value!,
-        pieData: {'その他': 16},
+        pieData: {'その他': 24},
         pieColors: [Colors.grey],
         pieLegends: {'その他': Colors.grey},
       )

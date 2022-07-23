@@ -39,7 +39,7 @@ class MakeScheduleViewModel extends StateNotifier<AsyncValue<MakeScheduleState>>
     state = AsyncValue.data(state.value!.copyWith(pieColors: tmpPieColors));
   }
 
-  double timeToAngle(TimeOfDay time) {
+  double timeToAngle(DateTime time) {
     double angle = 0;
     angle += time.hour * 15;
     angle += time.minute * 0.25;

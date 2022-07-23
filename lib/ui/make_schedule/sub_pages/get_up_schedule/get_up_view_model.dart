@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_manager/ui/make_schedule/sub_pages/get_up_schedule/get_up_state.dart';
 
@@ -24,11 +23,7 @@ class GetUpViewModel extends StateNotifier<AsyncValue<GetUpState>> {
     );
   }
 
-  Future<void> timePicker(BuildContext context) async {
-    final TimeOfDay? newTime = await showTimePicker(
-      context: context,
-      initialTime: TimeOfDay(hour: 7, minute: 15),
-    );
-    state = AsyncValue.data(state.value!.copyWith(getUpTime: newTime));
+  void changeDateTime(DateTime time) {
+    state = AsyncValue.data(state.value!.copyWith(getUpTime: time));
   }
 }

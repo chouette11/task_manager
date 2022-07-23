@@ -8,7 +8,7 @@ import './components/task_card.dart';
 
 class MakeSchedulePage extends ConsumerWidget {
   const MakeSchedulePage({Key? key, required this.getUpTime,}) : super(key: key);
-  final TimeOfDay getUpTime;
+  final DateTime getUpTime;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

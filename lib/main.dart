@@ -95,7 +95,7 @@ class _MyAppState extends State<MyApp> {
                 routes: [
                   GoRoute(
                     path: 'make/:',
-                    builder: (context, state) => MakeSchedulePage(getUpTime: state.extra as TimeOfDay),
+                    builder: (context, state) => MakeSchedulePage(getUpTime: state.extra as DateTime),
                   ),
                 ]
             ),
@@ -113,6 +113,15 @@ class _MyAppState extends State<MyApp> {
     );
 
     return  MaterialApp.router(
+      theme: ThemeData(
+        textTheme: TextTheme(
+          titleLarge: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          )
+        )
+      ),
       routeInformationParser: _router.routeInformationParser,
       routerDelegate: _router.routerDelegate,
     );

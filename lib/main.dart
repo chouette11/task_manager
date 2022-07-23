@@ -95,7 +95,7 @@ class _MyAppState extends State<MyApp> {
                 routes: [
                   GoRoute(
                     path: 'make/:',
-                    builder: (context, state) => const MakeSchedulePage(),
+                    builder: (context, state) => MakeSchedulePage(getUpTime: state.extra as TimeOfDay),
                   ),
                 ]
             ),

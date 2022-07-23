@@ -7,7 +7,8 @@ import 'package:task_manager/ui/top/top_page.dart';
 import './components/task_card.dart';
 
 class MakeSchedulePage extends ConsumerWidget {
-  const MakeSchedulePage({Key? key}) : super(key: key);
+  const MakeSchedulePage({Key? key, required this.getUpTime,}) : super(key: key);
+  final DateTime getUpTime;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,7 +20,12 @@ class MakeSchedulePage extends ConsumerWidget {
         return Scaffold(
           body: Column(
             children: [
-              CustomPieChart(pieData: data.pieData, colors: data.pieColors, legends: data.pieLegends),
+              CustomPieChart(
+                pieData: data.pieData,
+                colors: data.pieColors,
+                legends: data.pieLegends,
+                initialAngle: viewModel.timeToAngle(getUpTime),
+              ),
               Container(
                 width: mediaSize.width,
                 height: 280,

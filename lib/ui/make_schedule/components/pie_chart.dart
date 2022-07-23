@@ -15,9 +15,11 @@ class CustomPieChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaSize = MediaQuery.of(context).size;
+    final textTheme = Theme.of(context).textTheme;
     return SizedBox(
       height: 200,
-      width: MediaQuery.of(context).size.width,
+      width: mediaSize.width,
       child: Row(
         children: [
           Expanded(
@@ -85,32 +87,35 @@ class LegendListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: legends.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Padding(
-          padding: const EdgeInsets.only(top: 4, bottom: 4),
-          child: Row(
-            children: [
-              Container(
-                width: 12,
-                height: 12,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: legends.values.toList()[index],
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: ListView.builder(
+        itemCount: legends.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Padding(
+            padding: const EdgeInsets.only(top: 4, bottom: 4),
+            child: Row(
+              children: [
+                Container(
+                  width: 12,
+                  height: 12,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: legends.values.toList()[index],
+                  ),
                 ),
-              ),
-              SizedBox(width: 4),
-              Flexible(
-                child: Text(
-                  legends.keys.toList()[index],
-                  overflow: TextOverflow.clip,
+                SizedBox(width: 4),
+                Flexible(
+                  child: Text(
+                    legends.keys.toList()[index],
+                    overflow: TextOverflow.clip,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

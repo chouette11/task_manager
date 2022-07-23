@@ -22,14 +22,52 @@ class CustomPieChart extends StatelessWidget {
         children: [
           Expanded(
             flex: 2,
-            child: PieChart(
-              dataMap: pieData,
-              initialAngleInDegree: initialAngle + 270 > 360 ?
-              initialAngle - 90 : initialAngle + 270,
-              colorList: colors,
-              legendOptions: LegendOptions(
-                showLegends: false,
-              ),
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: PieChart(
+                    dataMap: pieData,
+                    initialAngleInDegree: initialAngle + 270 > 360 ?
+                    initialAngle - 90 : initialAngle + 270,
+                    colorList: colors,
+                    legendOptions: LegendOptions(
+                      showLegends: false,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  child: Text(
+                      "0",
+                    style: textTheme.titleSmall,
+                  ),
+                  left: mediaSize.width * (2/3) * (1/2) - 8,
+                ),
+                Positioned(
+                  child: Text(
+                      "6",
+                    style: textTheme.titleSmall,
+                  ),
+                  left: mediaSize.width * (2/3) * 0.9 - 16,
+                  top: 100,
+                ),
+                Positioned(
+                  child: Text(
+                      "12",
+                    style: textTheme.titleSmall,
+                  ),
+                  left: mediaSize.width * (2/3) * (1/2) - 12,
+                  top: 185,
+                ),
+                Positioned(
+                  child: Text(
+                      "18",
+                    style: textTheme.titleSmall,
+                  ),
+                  left: 12,
+                  top: 100,
+                ),
+              ],
             ),
           ),
           Expanded(
